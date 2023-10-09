@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+body { 
+    background-color: #292929;
+  }
+  
+* { box-sizing: border-box; }
+
+.parent-container {
+    flex-direction: column;
+    height: 100vh; 
+    transform: scale(.62, .62);
+    transform-origin: center center;
+    width: 100vh;  
+    margin: 0 auto;
+}
+
+
+  

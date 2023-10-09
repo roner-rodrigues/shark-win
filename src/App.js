@@ -1,23 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './App.css';
-
-function RepeatButton(props) {
-    return (
-        <button 
-            aria-label='Play again.' 
-            id='repeatButton' 
-            onClick={props.onClick}>
-        </button>
-    );
-}
-
-function WinningSound() {
-    return (
-        <audio autoplay="autoplay" className="player" preload="false">
-            <source src="https://andyhoffman.codes/random-assets/img/slots/winning_slot.wav" />
-        </audio>
-    );
-}
+import 'bootstrap/dist/css/bootstrap.css';
+import './base.css';
+import './ActionBar.css';
+import './Spinner.css';
+// import './mediaqueries.css';
+import WinningSound   from './WinningSound'; 
+import Spinner        from './Spinner';
+import ActionBar      from './ActionBar';       
+import RepeatButton   from './RepeatButton'; 
+import BetIncreaseBtn from './BetIncreaseBtn';
+import BetDecreaseBtn from './BetDecreaseBtn';
 
 const loser = [
     'Not quite', 
@@ -36,6 +28,7 @@ function App() {
     const matches = useRef([]);
     const [winner, setWinner]       = useState(false);
     const [hasPlayed, setHasPlayed] = useState(false);
+    const [totalBet, setTotalBet]   = useState(10);
 
     const finishHandler = (value) => {
         if (!hasPlayed) return;  
@@ -49,16 +42,16 @@ function App() {
         }
     }
 
-    const emptyArray = () => {
+    const emptyMatchesArray = () => {
         matches.current = [];
     }
 
     const handleClick = () => { 
         setWinner(null);
-        emptyArray();
+        emptyMatchesArray();
         // child1.current.moveToIcon(5);
+        // child1.current.forceUpdateHandler(1000,1);
         child1.current.forceUpdateHandler();
-        
         child2.current.forceUpdateHandler();
         child3.current.forceUpdateHandler();
         setHasPlayed(true);
@@ -74,120 +67,42 @@ function App() {
     const child3 = useRef(null);
     
     return (
-        <div>
+        <div className="container-fluid h-100">
             {winner === true && <WinningSound />}
-            <h1 style={{ color: 'white'}}>
-                <span>{winner === null ? 'Waiting…' : winner ? '🤑 Pure skill! 🤑' : getLoser()}</span>
-            </h1>
+            <div className="row h-100 align-items-center justify-content-center">
+                <div className="col-12 col-md-10 col-lg-8 parent-container">
+                    <h1 style={{ color: 'white' }}>
+                        <span>{winner === null ? 'Waiting…' : winner ? '🤑 Pure skill! 🤑' : getLoser()}</span>
+                    </h1>
+    
+                    <div className="spinner-container">
+                        <Spinner hasPlayed={hasPlayed} onFinish={finishHandler} ref={child1} timer="1000" />
+                        <Spinner hasPlayed={hasPlayed} onFinish={finishHandler} ref={child2} timer="900" />
+                        <Spinner hasPlayed={hasPlayed} onFinish={finishHandler} ref={child3} timer="1200" />
+                        <div className="gradient-fade"></div>
+                    </div>
+    
+                    <div className="user-status-container">
+                        <h2>Total Bet: {totalBet}</h2>
+                    </div>
+    
+                    <div className="action-bar-container">
+                        <ActionBar>
+                            <BetDecreaseBtn onClick={() => setTotalBet(prevBet => prevBet - 1)} />
 
-            <div className={`spinner-container`}>
-                <Spinner hasPlayed={hasPlayed} onFinish={finishHandler} ref={child1} timer="1000" />
-                <Spinner hasPlayed={hasPlayed} onFinish={finishHandler} ref={child2} timer="1400" />
-                <Spinner hasPlayed={hasPlayed} onFinish={finishHandler} ref={child3} timer="2200" />
-                <div className="gradient-fade"></div>
+                            {winner !== null && <RepeatButton onClick={handleClick} />}
+
+                            <BetIncreaseBtn onClick={() => setTotalBet(prevBet => prevBet + 1)} />
+                        </ActionBar>
+                    </div>
+                </div>
             </div>
-            {winner !== null && <RepeatButton onClick={handleClick} />}
         </div>
     );
+        
+    
+
+    
 }
-
-const Spinner = React.forwardRef((props, ref) => {
-    const [position, setPosition] = useState(0);
-    const [timeRemaining, setTimeRemaining] = useState(props.timer);
-    const iconHeight = 188;
-    const multiplier = Math.floor(Math.random()*(4-1)+1); 
-
-    const setStartPosition = () => {
-        return ((Math.floor((Math.random()*9))) * iconHeight)*-1;
-    }
-    const start = useRef(setStartPosition());
-
-    const getIconPositions = () => {
-        const iconHeight = 188;
-        const totalIcons = 9;
-        const positions = [];
-    
-        for(let i = 0; i < totalIcons; i++) {
-            positions.push(-i * iconHeight);
-        }
-    
-        return positions;
-    }
-    const iconPositions = getIconPositions();
-
-    const forceToIcon = (iconIndex) => {
-        if (iconIndex >= 0 && iconIndex < 9) { 
-            setPosition(iconPositions[iconIndex]);
-        }
-    }
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            tick();
-        }, 100);
-
-        return () => clearInterval(timer);
-    }, [timeRemaining, position]);
-
-    const tick = () => {
-        if (timeRemaining <= 0) {
-            stopSpinner();  
-            if (props.hasPlayed) {
-                getSymbolFromPosition();
-            }
-        } else {
-            moveBackground();
-        }      
-    }
-
-    const moveBackground = () => {
-        setPosition(position - iconHeight * multiplier);
-        setTimeRemaining(timeRemaining - 100);
-    }
-
-    const stopSpinner = () => {
-        let moved = (props.timer/100) * multiplier;
-        let startPosition = start.current;
-        let currentPosition = startPosition;
-        const totalSymbols = 9;
-        const maxPosition = (iconHeight * (totalSymbols-1)*-1);
-    
-        for (let i = 0; i < moved; i++) {              
-            currentPosition -= iconHeight;
-            if (currentPosition < maxPosition) {
-                currentPosition = 0;
-            }      
-        }
-    
-        setPosition(currentPosition);  // isso efetivamente para a roleta
-    }
-    
-    const getSymbolFromPosition = () => {
-        // props.onFinish(position);
-
-        const totalSymbols = 9;
-        // Esta linha de código determina qual ícone está na janela visível, dado a posição final.
-        let index = Math.abs(position) % (iconHeight * totalSymbols);
-        index = Math.floor(index / iconHeight);
-        props.onFinish(index);
-    }
-
-
-    React.useImperativeHandle(ref, () => ({
-        forceUpdateHandler() {
-            start.current = setStartPosition();
-            setPosition(start.current);
-            setTimeRemaining(props.timer);
-        },
-        moveToIcon: forceToIcon
-    }));
-
-    return (            
-        <div 
-            style={{backgroundPosition: '0px ' + position + 'px'}}
-            className={`icons`}          
-        />
-    )
-});
 
 export default App;

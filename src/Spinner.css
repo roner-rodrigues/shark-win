@@ -1,0 +1,58 @@
+.icons { 
+    flex-grow: 1; /* Permite que os ícones cresçam para preencher o espaço disponível */
+    margin: 0 5px;
+    display: inline-block;
+    width: 128px;
+    height: 564px;
+    overflow: hidden;
+    background: #fff url('assets/sprite5.png') repeat-y;
+    /* background: #fff url('assets/sprite-min-128x564.png') repeat-y; */
+    will-change: backgroundPosition;
+    transition: 0.3s background-position ease-in-out;
+    padding: 0 80px;
+    transform: translateZ(0);
+}
+
+.icons:nth-child(2) {
+    margin: 0 10px;
+}
+
+.gradient-fade {
+    position: absolute;
+    top:    0;
+    bottom: 0;
+    right:  0; 
+    left:   0;
+    height: 564px; 
+    background: linear-gradient(
+        to bottom, 
+        rgba(64,64,64,1) 0%, 
+        rgba(64,64,64,0) 7%, 
+        rgba(64,64,64,0) 93%, 
+        rgba(64,64,64,1) 100%
+    );
+    pointer-events: none;
+}
+
+.spinner-container {
+    display: flex;  
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    padding: 0em;
+    transition: 0.3s transform;
+}
+  
+.spinner-container::after {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 180px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 0, 0, .1);
+}
+    
