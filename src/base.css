@@ -14,11 +14,20 @@ body {
 
 .parent-container {
     flex-direction: column;
-    height: 100vh; 
     transform: scale(.62, .62);
     transform-origin: center center;
-    width: 100vh;  
-    margin: 0 auto;
+    width:      90vh;  
+    overflow:   hidden; 
+}
+
+.gif-container {
+  text-align: center; 
+  margin-bottom: 20px; 
+}
+
+.gif-container img {
+  max-width: 100%; 
+  height: auto; 
 }
 
 

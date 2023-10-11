@@ -2,33 +2,31 @@ import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './base.css';
 import './ActionBar.css';
+import './BetStatusBar.css';
 import './Spinner.css';
 // import './mediaqueries.css';
+import myGif from './assets/shark-gif-1.gif';
+
+// import { loser, getLoser } from './helpers';
+import Navbar         from './Navbar';
 import WinningSound   from './WinningSound'; 
 import Spinner        from './Spinner';
 import ActionBar      from './ActionBar';       
 import RepeatButton   from './RepeatButton'; 
 import BetIncreaseBtn from './BetIncreaseBtn';
 import BetDecreaseBtn from './BetDecreaseBtn';
-
-const loser = [
-    'Not quite', 
-    'Stop gambling', 
-    'Hey, you lost!', 
-    'Ouch! I felt that',      
-    'Don\'t beat yourself up',
-    'There goes the college fund',
-    'I have a cat. You have a loss',
-    'You\'re awesome at losing',
-    'Coding is hard',
-    'Don\'t hate the coder'
-];
+import AutoPlayBtn    from './AutoPlayBtn';
+import FastPlayBtn    from './FastPlayBtn';
+import { FontAwesomeIcon }             from '@fortawesome/react-fontawesome';
+import { faWallet, faCoins, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
-    const matches = useRef([]);
-    const [winner, setWinner]       = useState(false);
-    const [hasPlayed, setHasPlayed] = useState(false);
-    const [totalBet, setTotalBet]   = useState(10);
+    const matches                           = useRef([]);
+    const [winner, setWinner]               = useState(false);
+    const [hasPlayed, setHasPlayed]         = useState(false);
+    const [walletAmount, setWalletAmount]   = useState(1000); 
+    const [betAmount, setBetAmount]         = useState(0);         
+    const [totalWinnings, setTotalWinnings] = useState(0); 
 
     const finishHandler = (value) => {
         if (!hasPlayed) return;  
@@ -38,6 +36,7 @@ function App() {
             const first = matches.current[0];
             let results = matches.current.every(match => match === first);
             setWinner(results);
+            setTotalWinnings(totalWinnings+200)
             setHasPlayed(false);
         }
     }
@@ -47,20 +46,34 @@ function App() {
     }
 
     const handleClick = () => { 
-        setWinner(null);
         emptyMatchesArray();
-        // child1.current.moveToIcon(5);
-        // child1.current.forceUpdateHandler(1000,1);
+        setWinner(null);
+        setHasPlayed(true);
+        setWalletAmount(walletAmount-50);
         child1.current.forceUpdateHandler();
         child2.current.forceUpdateHandler();
         child3.current.forceUpdateHandler();
-        setHasPlayed(true);
-
     }
 
-    const getLoser = () => {
-        return loser[Math.floor(Math.random()*loser.length)];
-    }
+    const handleIncreaseBet = () => {
+        setBetAmount(prevBet => {
+            if (prevBet < 50) {
+                return prevBet + 10;
+            } else {
+                return prevBet;
+            }
+        });
+    };
+
+    const handleDecreaseBet = () => {
+        setBetAmount(prevBet => {
+            if (prevBet >= 10) {
+                return prevBet -= 10;
+            } else {
+                return prevBet; 
+            }
+        });
+    };
 
     const child1 = useRef(null);
     const child2 = useRef(null);
@@ -68,41 +81,50 @@ function App() {
     
     return (
         <div className="container-fluid h-100">
+            <Navbar />
             {winner === true && <WinningSound />}
             <div className="row h-100 align-items-center justify-content-center">
                 <div className="col-12 col-md-10 col-lg-8 parent-container">
-                    <h1 style={{ color: 'white' }}>
-                        <span>{winner === null ? 'Waiting…' : winner ? '🤑 Pure skill! 🤑' : getLoser()}</span>
-                    </h1>
-    
-                    <div className="spinner-container">
-                        <Spinner hasPlayed={hasPlayed} onFinish={finishHandler} ref={child1} timer="1000" />
-                        <Spinner hasPlayed={hasPlayed} onFinish={finishHandler} ref={child2} timer="900" />
-                        <Spinner hasPlayed={hasPlayed} onFinish={finishHandler} ref={child3} timer="1200" />
+                <div className="gif-container">
+                    <img src={myGif} alt="Descrição do GIF" />
+                </div>
+
+                    <div className="spinner-container row">
+                        <Spinner betAmount={betAmount} hasPlayed={hasPlayed} onFinish={finishHandler} ref={child1} timer="1000" />
+                        <Spinner betAmount={betAmount} hasPlayed={hasPlayed} onFinish={finishHandler} ref={child2} timer="500" />
+                        <Spinner betAmount={betAmount} hasPlayed={hasPlayed} onFinish={finishHandler} ref={child3} timer="900" />
                         <div className="gradient-fade"></div>
                     </div>
     
-                    <div className="user-status-container">
-                        <h2>Total Bet: {totalBet}</h2>
+                    <div className="bet-status-bar-container row">
+                        <div className="col">
+                            <FontAwesomeIcon icon={faWallet} /> {walletAmount}
+                        </div>
+                        <div className="col">
+                            <FontAwesomeIcon icon={faCoins} />  {betAmount}
+                        </div>
+                        <div className="col">
+                            <FontAwesomeIcon icon={faTrophy} /> {totalWinnings}
+                        </div>
                     </div>
     
-                    <div className="action-bar-container">
+                    <div className="action-bar-container row">
                         <ActionBar>
-                            <BetDecreaseBtn onClick={() => setTotalBet(prevBet => prevBet - 1)} />
+                            <FastPlayBtn />
+                            
+                            <BetDecreaseBtn onClick={handleDecreaseBet} />
 
                             {winner !== null && <RepeatButton onClick={handleClick} />}
 
-                            <BetIncreaseBtn onClick={() => setTotalBet(prevBet => prevBet + 1)} />
+                            <BetIncreaseBtn onClick={handleIncreaseBet} />
+                        
+                            <AutoPlayBtn />
                         </ActionBar>
                     </div>
                 </div>
             </div>
         </div>
     );
-        
-    
-
-    
 }
 
 export default App;
