@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.bet-bar-container {
+    margin-top: 10px;
+    background-color: rgb(28, 53, 106);
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes moverLetreiro {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.bet-header-bar-container {
+  background-color: rgba(40, 77, 155, 0.954);
+  overflow: hidden;
+}
+
+.scrolling-text {
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 
+  1px 1px 0 #000,
+    2px 2px 0 #000,
+    3px 3px 0 #000,
+    4px 4px 0 #000; /* Ajuste para um efeito mais profundo */
+  white-space: nowrap;
+  animation: moverLetreiro 10s linear infinite;
+}
+
+.bet-status-bar-container {
+    padding: 10px 0;
+    display: flex; 
+    justify-content: space-between;
+    background-color: inherit;
+}
+
+.bet-status-bar-container .col {
+    background-color: #001f3f; 
+    border-radius: 10px;
+    color: aliceblue; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 5px 15px;
+    flex: 1;
+    margin: 0 5px; 
+    justify-content: space-between;
+}
+
+.bet-status-bar-container .col .svg-inline--fa { 
+    color: gold; 
+}
+
+.bet-status-bar-container .col:first-child {
+    margin-left: 3px; 
+}
+
+.bet-status-bar-container .col:last-child {
+    margin-right: 3px; 
+}
+

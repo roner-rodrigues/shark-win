@@ -1,21 +1,21 @@
 .icons { 
-    flex-grow: 1; /* Permite que os ícones cresçam para preencher o espaço disponível */
-    margin: 0 5px;
+    flex: none;
     display: inline-block;
-    width: 128px;
+    width: 148px;
     height: 564px;
     overflow: hidden;
-    background: #fff url('assets/sprite-original.png') repeat-y;
-    /* background: #fff url('assets/sprite-min-128x564.png') repeat-y; */
+    background: #fff url('assets/TIRA_148x1692.png') repeat-y;
+    /* background: #fff url('assets/sprite-original.png') repeat-y; */
     will-change: backgroundPosition;
     transition: 0.3s background-position ease-in-out;
-    padding: 0 80px;
     transform: translateZ(0);
+    position: relative;
+    padding: 0;
 }
 
 .icons:nth-child(2) {
     margin: 0 10px;
-}
+}  
 
 .gradient-fade {
     position: absolute;
@@ -35,21 +35,10 @@
 }
 
 .spinner-container {
-    display: flex;  
-    justify-content: space-between;
+    display: flex;
+    justify-content: center; 
     position: relative;
     overflow: hidden;
     transition: 0.3s transform;
 }
   
-.spinner-container::after {
-    position: absolute;
-    content: '';
-    display: block;
-    height: 180px;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 0, 0, .1);
-}
-    

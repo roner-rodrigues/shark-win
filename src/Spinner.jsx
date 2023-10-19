@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Overlay from './Overlay';  
 
 const Spinner = React.forwardRef((props, ref) => {
     const [position, setPosition]             = useState(0);
@@ -16,7 +17,7 @@ const Spinner = React.forwardRef((props, ref) => {
     const start = useRef(setStartPosition());
 
     const symbolsIndex = {
-        Cereja:     0,    
+        Cereja:        0,    
         Hamburguer: -188,  
         Pizza:      -376,  
         Couve:      -564,  
@@ -26,7 +27,7 @@ const Spinner = React.forwardRef((props, ref) => {
         Abacate:    -1316, 
         Milho:      -1504  
     }
-    const wildIndex = 3;
+    const wildIndex = 2;
     
     const getIconPositions = () => {
         const positionsArr = [];
@@ -62,10 +63,9 @@ const Spinner = React.forwardRef((props, ref) => {
     
         const slope = (maxProbability - minProbability) / (maxAmount - minAmount);
         const prob = slope * (betAmount - minAmount) + minProbability;
-    
         return prob;
     }
-    
+
 
     const tick = () => {
         if(alreadyPlayed) return;
@@ -118,7 +118,6 @@ const Spinner = React.forwardRef((props, ref) => {
         index = Math.floor(index / iconHeight);
         props.onFinish(index);
     }
-    
 
     React.useImperativeHandle(ref, () => ({
         forceUpdateHandler() {
@@ -131,9 +130,11 @@ const Spinner = React.forwardRef((props, ref) => {
     return (            
         <div 
             style={{backgroundPosition: 'center ' + position + 'px'}}
-            className={`icons`}          
-        />
-    )
+            className={`icons no-stack-col`}              
+        >
+           {props.showOverlay && <Overlay yPosition={111} />}
+        </div>
+   )   
 });
 
 export default Spinner;

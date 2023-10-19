@@ -3,8 +3,9 @@
     display: flex;
     justify-content: center; 
     align-items: center;     
-    background-color: rgb(92, 121, 184);
     height: 25vh;
+
+    /* border-top: 10px solid gold;   */
 }
 
 #fastPlayBtn {
