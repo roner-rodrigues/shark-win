@@ -1,38 +1,21 @@
 .icons { 
     flex: none;
     display: inline-block;
-    width: 148px;
+    width:  148px;
     height: 564px;
     overflow: hidden;
     background: #fff url('assets/TIRA_148x1692.png') repeat-y;
     /* background: #fff url('assets/sprite-original.png') repeat-y; */
     will-change: backgroundPosition;
     transition: 0.3s background-position ease-in-out;
-    transform: translateZ(0);
+    /* transform: translateZ(0); */
     position: relative;
     padding: 0;
 }
 
-.icons:nth-child(2) {
+/* .spinner-container .icons:nth-of-type(3) {
     margin: 0 10px;
-}  
-
-.gradient-fade {
-    position: absolute;
-    top:    0;
-    bottom: 0;
-    right:  0; 
-    left:   0;
-    height: 564px; 
-    background: linear-gradient(
-        to bottom, 
-        rgba(64,64,64,1) 0%, 
-        rgba(64,64,64,0) 7%, 
-        rgba(64,64,64,0) 93%, 
-        rgba(64,64,64,1) 100%
-    );
-    pointer-events: none;
-}
+} */
 
 .spinner-container {
     display: flex;
@@ -41,4 +24,14 @@
     overflow: hidden;
     transition: 0.3s transform;
 }
-  
+
+
+.lateral-column-left {
+    background: url('assets/tela/lateral-esquerda.png') no-repeat center center;
+    background-size: 100% 100%; 
+}
+
+.lateral-column-right {
+    background: url('assets/tela/lateral-direita.png') no-repeat center center;
+    background-size: 100% 100%; 
+}

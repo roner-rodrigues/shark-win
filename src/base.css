@@ -6,15 +6,23 @@
   }
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body { 
-    background-color: #292929;
-  }
+    background: url('assets/tela/wallpaper.png') no-repeat center center;
+    background-size: cover; 
+    overflow: scroll;
+}
   
 * { box-sizing: border-box; }
 
 .container-fluid {
-  width: 1300px;  /* ou qualquer outro valor que preferir */
-  height: 800px; /* ou qualquer outro valor que preferir */
+  width:  1250px; 
+  /* height: 500px;   */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -27,25 +35,16 @@ body {
   transform-origin: top center;
   overflow: hidden;
   margin-top: 10px;
-  width: 40%;
+  width: 43%;
+  position: relative;
 }
 
   
 .gif-container {
-  height: 175px;
+  height: 216px;
   overflow: hidden;
 }
   
 .gif-container img {
   padding: 0 0;
-}
-
-.lateral-column {
-  background: url('assets/coluna.png') no-repeat center center;
-  background-size: 100% 100%; 
-}
-  
-.no-stack-col {
-  flex: 0 0 33.33%;
-  max-width: 33.33%;
 }

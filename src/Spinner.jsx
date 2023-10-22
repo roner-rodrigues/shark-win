@@ -1,39 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { TOTAL_ICONS, ICON_HEIGHT, MULTIPLIER, SYMBOLS_INDEXES } 
+    from './constants';
 import Overlay from './Overlay';  
 
 const Spinner = React.forwardRef((props, ref) => {
-    const [position, setPosition]             = useState(0);
-    const [localHasPlayed, setLocalHasPlayed] = useState(false);
-    const [timeRemaining, setTimeRemaining]   = useState(props.timer);
-    const multiplier                          = Math.floor(Math.random()*(4-1)+1); 
-    const iconHeight                          = 188;
-    const totalIcons                          = 9;
-    let   alreadyPlayed                       = false;
-    let   cheated                             = false;
+    const [position, setPosition]               = useState(0);
+    const [timeRemaining, setTimeRemaining]     = useState(props.timer);
+    const [localHasPlayed,  setLocalHasPlayed]  = useState(false);
 
     const setStartPosition = () => {
-        return ((Math.floor((Math.random()*totalIcons))) * iconHeight)*-1;
+        return ((Math.floor((Math.random()*TOTAL_ICONS))) * ICON_HEIGHT)*-1;
     }
     const start = useRef(setStartPosition());
 
-    const symbolsIndex = {
-        Cereja:        0,    
-        Hamburguer: -188,  
-        Pizza:      -376,  
-        Couve:      -564,  
-        Abacaxi:    -752,  
-        Banana:     -940,  
-        Cerveja:    -1128, 
-        Abacate:    -1316, 
-        Milho:      -1504  
-    }
-    const wildIndex = 2;
-    
     const getIconPositions = () => {
         const positionsArr = [];
         
-        for(let key in symbolsIndex) {
-            positionsArr.push(-symbolsIndex[key] * iconHeight);
+        for(let key in SYMBOLS_INDEXES) {
+            positionsArr.push(SYMBOLS_INDEXES[key]);
         }
         
         return positionsArr;
@@ -41,10 +25,7 @@ const Spinner = React.forwardRef((props, ref) => {
     const iconPositions = getIconPositions();    
     
     useEffect(() => {
-        if (props.hasPlayed) {
-            setLocalHasPlayed(true);
-            alreadyPlayed = false;
-        }
+        setLocalHasPlayed(props.hasPlayed);
     }, [props.hasPlayed]);
 
     useEffect(() => {
@@ -54,28 +35,15 @@ const Spinner = React.forwardRef((props, ref) => {
 
         return () => clearInterval(timer);
     }, [timeRemaining, position]);
-
-    const calculateProbability = (betAmount) => {
-        const minAmount = 1.50;
-        const maxAmount = 50;
-        const minProbability = 0.15; // 15%
-        const maxProbability = 1;    // 100%
     
-        const slope = (maxProbability - minProbability) / (maxAmount - minAmount);
-        const prob = slope * (betAmount - minAmount) + minProbability;
-        return prob;
-    }
-
-
     const tick = () => {
-        if(alreadyPlayed) return;
+        if(!props.hasPlayed) return;
         
         if (timeRemaining <= 0) {
             stopSpinner();
             if (localHasPlayed) {
                 getSymbolFromPosition();
                 setLocalHasPlayed(false); 
-                alreadyPlayed = true;
             }
         } else {
             moveBackground();
@@ -83,40 +51,31 @@ const Spinner = React.forwardRef((props, ref) => {
     }
 
     const moveBackground = () => {
-        setPosition(position - iconHeight * multiplier);
+        setPosition(position - ICON_HEIGHT * MULTIPLIER);
         setTimeRemaining(timeRemaining - 100);
     }
 
     const stopSpinner = () => {
-        let currentPosition = Math.abs(position);
-        currentPosition %= (iconHeight * totalIcons);
-        currentPosition *= -1;
-
-        const chance = Math.random(); 
-        const activationProbability = calculateProbability(props.betAmount);
-        
-        if(chance <= activationProbability) {
-            setPosition(iconPositions[wildIndex]);
-            cheated = true;
-        }
-        else {
+        if(props.hasCheated) {
+            setPosition(iconPositions[props.forcedSymbol]);
+        } else {
+            let currentPosition = Math.abs(position);
+            currentPosition %= (ICON_HEIGHT * TOTAL_ICONS);
+            currentPosition *= -1;
             setPosition(currentPosition); 
-            cheated = false;
         }
-        
-        alreadyPlayed = true;
     }
     
+    // Determina qual ícone está na linha do meio da esteira, dado a posição final.
     const getSymbolFromPosition = () => {
-        // Determina qual ícone está na janela visível, dado a posição final.
         let index;
-        if(cheated)
-            index = Math.abs(iconPositions[wildIndex]) % (iconHeight * totalIcons);
+        if(props.hasCheated)
+            index = Math.abs(iconPositions[props.forcedSymbol]) % (ICON_HEIGHT * TOTAL_ICONS);
         else
-            index = Math.abs(position) % (iconHeight * totalIcons);
+            index = Math.abs(position) % (ICON_HEIGHT * TOTAL_ICONS);
         
-        index = Math.floor(index / iconHeight);
-        props.onFinish(index);
+        index = (index / ICON_HEIGHT + 1) % TOTAL_ICONS;
+        props.onFinish(index, props.id);
     }
 
     React.useImperativeHandle(ref, () => ({
@@ -130,9 +89,12 @@ const Spinner = React.forwardRef((props, ref) => {
     return (            
         <div 
             style={{backgroundPosition: 'center ' + position + 'px'}}
-            className={`icons no-stack-col`}              
+            className={`icons`}              
         >
-           {props.showOverlay && <Overlay yPosition={111} />}
+           {props.showOverlay && <Overlay 
+                yPosition={props.overlayIdx} 
+                animationIndex={props.overlaySymbolIdx} />
+            }
         </div>
    )   
 });
