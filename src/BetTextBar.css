@@ -9,12 +9,12 @@
   }
 }
 
-.bet-header-bar-container {
+.bet-adv-bar-container {
   background-color: inherit;
   overflow: hidden;
 }
 
-.scrolling-text {
+.adv-scrolling-text {
   font-family: "Dancing Script", cursive;
   font-size: 2rem;
   color: #fff;

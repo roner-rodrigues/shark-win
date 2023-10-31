@@ -2,10 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './base.css';
-import './Spinner.css';
 import './BetBarContainer.css';
-import './ActionBar.css';
-// import './mediaqueries.css';
+import barraDourada from './assets/tela/barra_dourada.png';
 
 import Navbar         from './Navbar';
 import WinningSound   from './WinningSound'; 
@@ -46,40 +44,36 @@ function MainContent({
             <Navbar />
             {winner === true && <WinningSound />}
             <div className="row h-100 align-items-center justify-content-center">
-                <div className="col-12 col-md-10 col-lg-8 parent-container">
-                    <div className="gif-container row">
+                <div className="custom-container parent-container">
+                    <div className="gif-container">
                         <img src={bannerPrincipal} />                    
                     </div>
 
-                    <div className="spinner-container row">
+                    <div className="spinner-container">
                         {winner && <div className="winner-overlay"></div>}
 
-                        <div className="lateral-column-left col-1"></div>
+                        <div className="lateral-column-left"></div>
                         <Spinner 
-                            className="col"
-                            id          = "0"
-                            timer       = "850"
-                            ref         = {child1} 
-                            betAmount   = {betAmount} 
-                            hasPlayed   = {hasPlayed} 
-                            onFinish    = {finishHandler} 
-
+                            id               = "0"
+                            timer            = "850"
+                            ref              = {child1} 
+                            betAmount        = {betAmount} 
+                            hasPlayed        = {hasPlayed} 
+                            onFinish         = {finishHandler} 
                             hasCheated       = {hasCheated}
-                            forcedSymbol     = {1}
+                            forcedSymbol     = {forcedSymbol}
                             showOverlay      = {winner}
                             overlayIdx       = {winnerIndexesPosArr[0]}
                             overlaySymbolIdx = {winnerIndexesSymbolsArr[0]}
                         />
 
                         <Spinner 
-                            className="col"
-                            id          = "1"
-                            timer       = "800" 
-                            ref         = {child2} 
-                            betAmount   = {betAmount} 
-                            hasPlayed   = {hasPlayed} 
-                            onFinish    = {finishHandler} 
-
+                            id               = "1"
+                            timer            = "800" 
+                            ref              = {child2} 
+                            betAmount        = {betAmount} 
+                            hasPlayed        = {hasPlayed} 
+                            onFinish         = {finishHandler} 
                             hasCheated       = {hasCheated}
                             forcedSymbol     = {forcedSymbol}
                             showOverlay      = {winner}
@@ -88,31 +82,35 @@ function MainContent({
                         />
                         
                         <Spinner 
-                            className   ="col"
-                            id          = "2"
-                            timer       = "900" 
-                            ref         = {child3} 
-                            betAmount   = {betAmount} 
-                            hasPlayed   = {hasPlayed} 
-                            onFinish    = {finishHandler}
-
+                            id               = "2"
+                            timer            = "900" 
+                            ref              = {child3} 
+                            betAmount        = {betAmount} 
+                            hasPlayed        = {hasPlayed} 
+                            onFinish         = {finishHandler}
                             hasCheated       = {hasCheated}
-                            forcedSymbol     = {8}
+                            forcedSymbol     = {forcedSymbol}
                             showOverlay      = {winner}
                             overlayIdx       = {winnerIndexesPosArr[2]} 
                             overlaySymbolIdx = {winnerIndexesSymbolsArr[2]}
                         />
-                        <div className="lateral-column-right col-1"></div>
+                        <div className="lateral-column-right"></div>
                     </div>
 
-
                     <div className="bet-bar-container">
-                        <div className="bet-header-bar-container row">
-                            <div className="scrolling-text">
-                                Jogue Shark Win para ganhar diversos prêmios!
+                        <div className="bet-header-bar-container">
+                            <div className={ winner !== true ? 
+                                "scrolling-text" : 
+                                "" 
+                            }>
+
+                            { winner ? 
+                                totalWinnings : 
+                                "Jogue Shark Win para ganhar diversos prêmios!"
+                            }
                             </div>
                         </div>
-                        <div className="bet-status-bar-container row">
+                        <div className="bet-status-bar-container">
                             <div className="col">
                                 <FontAwesomeIcon icon={faWallet} /> {walletAmount}
                             </div>
@@ -124,12 +122,17 @@ function MainContent({
                             </div>
                         </div>
                     </div>
-                    
-                    <div className="action-bar-container row">
+
+                    <div className="action-bar-container">
                         <ActionBar>
                             <FastPlayBtn />
                             <BetDecreaseBtn onClick={handleDecreaseBet} />
-                            {winner !== null && <RepeatButton onClick={handleClick} />}
+                            
+                            <RepeatButton 
+                                onClick={handleClick} 
+                                className={winner === null ? "disabled" : ""}
+                            />
+
                             <BetIncreaseBtn onClick={handleIncreaseBet} />
                             <AutoPlayBtn />
                         </ActionBar>

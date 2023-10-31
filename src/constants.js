@@ -6,6 +6,7 @@ import Bonus1      from "./assets/lottie/luz_bonus.json";
 import Perola      from "./assets/lottie/ostra.json";
 import Mergulhador from "./assets/lottie/capacete.json";
 import Tubarao     from "./assets/lottie/wild_tuba.json";
+// import Tubarao     from "./assets/lottie/numeros.json";
 import Camarao     from "./assets/lottie/camarao.json";
 import Peixe       from "./assets/lottie/peixe_amarelo.json";
 import Bonus2      from "./assets/lottie/bolha_bonus.json";
@@ -25,7 +26,7 @@ export const SYMBOLS_INDEXES = {
     Peixe:       -1128, 
     Bonus2:      -1316  
 }
-export const WILD_INDEX = 0;
+export const WILD_INDEX = 5;
 
 export const ANIMATION_INDEXES = {
     Estrela,   

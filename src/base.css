@@ -21,8 +21,7 @@ body {
 * { box-sizing: border-box; }
 
 .container-fluid {
-  width:  1250px; 
-  /* height: 500px;   */
+  /* width:  1250px;  */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,20 +30,23 @@ body {
 }
 
 .parent-container {
+  width:  580px; 
   transform: scale(.62, .62);
   transform-origin: top center;
   overflow: hidden;
   margin-top: 10px;
-  width: 43%;
   position: relative;
 }
 
   
 .gif-container {
-  height: 216px;
-  overflow: hidden;
+  height: 200px;
 }
   
 .gif-container img {
-  padding: 0 0;
+  width: 100%; /* Faz a imagem ocupar toda a largura do contêiner pai */
+  height: 100%; /* Faz a imagem ocupar toda a altura do contêiner pai */
+  object-fit: cover; /* Garante que a imagem cubra o contêiner pai sem distorcê-la */
+  display: block; /* Remove o espaço em branco abaixo da imagem */
+  margin: auto; /* Centraliza a imagem */
 }

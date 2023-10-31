@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import bannerPrincipal from './assets/tela/banner-tuba.png';
-import MainContent     from './MainContent'; 
-import { TOTAL_ICONS, WILD_INDEX } from './constants';
+import bannerPrincipal                        from './assets/tela/banner-tuba.png';
+import MainContent                            from './MainContent'; 
+import { TOTAL_ICONS, WILD_INDEX }            from './constants';
 
 function App() {
     const matches = useRef([null, null, null]); 
@@ -19,7 +19,6 @@ function App() {
                                                     = useState([]);
     const [winnerIndexesSymbolsArr, setWinnerIndexesSymbolsArr]         
                                                     = useState([]);                                                
-
     useEffect(() => {
         if (winner) {
             setTotalWinnings(prevWinnings => prevWinnings + 200);
@@ -117,9 +116,9 @@ function App() {
 
     const identifyPatterns = (matrix) => {
         // Linha do meio 
-        if (matrix[1][0] === matrix[1][1] && matrix[1][1] === matrix[1][2]) {
+        if (matrix[0][1] === matrix[1][1] && matrix[1][1] === matrix[2][1]) {
             setWinnerIndexesPosArr([1,1,1]);
-            setWinnerIndexesSymbolsArr([matrix[1][0],matrix[1][1],matrix[1][2]]);
+            setWinnerIndexesSymbolsArr([matrix[0][1],matrix[1][1],matrix[2][1]]);
             setWinner(true);
         }
         // Diagonal esq-dir

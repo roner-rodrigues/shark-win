@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { TOTAL_ICONS, ICON_HEIGHT, MULTIPLIER, SYMBOLS_INDEXES } 
     from './constants';
 import Overlay from './Overlay';  
+import './Spinner.css';
 
 const Spinner = React.forwardRef((props, ref) => {
     const [position, setPosition]               = useState(0);

@@ -8,7 +8,6 @@
     z-index: 1; 
 }
 
-
 .icon-overlay {
     position: absolute;
     width: 100%;
@@ -17,3 +16,8 @@
     overflow: visible;
     /* background-color: rgba(0, 0, 0, 0.5);  */
 }
+
+.scale-animation {
+    transform: scale(1.25); 
+}
+  

@@ -18,7 +18,7 @@ function Overlay({ yPosition, animationIndex }) {
 
     // console.log(animations);
     return (
-        <div className="icon-overlay" style={{ top: yPosition * ICON_HEIGHT + 23 + 'px' }}>
+        <div className="icon-overlay scale-animation" style={{ top: yPosition * ICON_HEIGHT + 23 + 'px' }}>
             {View}
         </div>
     );
