@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+@keyframes moverLetreiro {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.bet-header-bar-container {
+    display: flex;
+    justify-content: center;  
+    background: linear-gradient(90deg, #306E9F, #4783D3, #306E9F); 
+    border: 2px solid #00f2ff; 
+    border-radius: 15px;  
+    box-shadow: 0 0 15px #0f3f7e;  
+    margin: 15px 15px;  
+    overflow: hidden;
+    position: relative;
+}
+
+.scrolling-text {
+  padding-top: 20px;
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  text-shadow: 
+  1px 1px 0 #000,
+    2px 2px 0 #000,
+    3px 3px 0 #000,
+    4px 4px 0 #000;
+  white-space: nowrap;
+  animation: moverLetreiro 10s linear infinite;
+}
+
+.winner-text {
+    font-family: 'Lobster', cursive; /* Fonte cursiva do Google Fonts */
+    font-weight: bold; /* Texto em negrito */
+    font-size: 2em; /* Tamanho do texto (ajuste conforme necessário) */
+    color: #FFD700; /* Cor amarela */
+    text-shadow:
+        -2px -2px 0px #FF6347, /* Sombra superior esquerda, cor avermelhada */
+        2px -2px 0px #FF6347, /* Sombra superior direita, cor avermelhada */
+        -2px 2px 0px #FF6347, /* Sombra inferior esquerda, cor avermelhada */
+        2px 2px 0px #FF6347; /* Sombra inferior direita, cor avermelhada */
+    padding: 5px 10px; /* Espaçamento interno para o texto (ajuste conforme necessário) */
+}

@@ -36,17 +36,39 @@ function App() {
         return prob;
     }
 
-    const computeVisibleIndices = () => {
-        const visibleIndices = [];
+    // const computeVisibleIndices = () => {
+    //     const visibleIndices = [];
         
+    //     for (let value of matches.current) {
+    //         const topValue = (value - 1 + TOTAL_ICONS) % TOTAL_ICONS;
+    //         const bottomValue = (value + 1) % TOTAL_ICONS;
+    //         visibleIndices.push([topValue, value, bottomValue]);
+    //     }
+
+    //     return visibleIndices;
+    // }        
+
+    const computeVisibleIndicesTransposed = () => {
+        // Inicializa três arrays para armazenar os valores topValue, value e bottomValue
+        const topValues = [];
+        const values = [];
+        const bottomValues = [];
+    
         for (let value of matches.current) {
             const topValue = (value - 1 + TOTAL_ICONS) % TOTAL_ICONS;
             const bottomValue = (value + 1) % TOTAL_ICONS;
-            visibleIndices.push([topValue, value, bottomValue]);
+            // Adiciona o valor calculado no array correspondente
+            topValues.push(topValue);
+            values.push(value);
+            bottomValues.push(bottomValue);
         }
-
-        return visibleIndices;
-    }        
+    
+        // Combina os três arrays em um array de arrays (matriz transposta)
+        const transposedVisibleIndices = [topValues, values, bottomValues];
+    
+        return transposedVisibleIndices;
+    };
+    
 
     const finishHandler = (value, spinnerId) => {
         if (!hasPlayed) return;  
@@ -58,7 +80,7 @@ function App() {
         if (matches.current.every(match => match !== null) && hasPlayed) {
             setHasPlayed(false);
 
-            const visibleMatrix = computeVisibleIndices();
+            const visibleMatrix = computeVisibleIndicesTransposed();
             console.log(visibleMatrix);
 
             identifyPatterns(visibleMatrix);

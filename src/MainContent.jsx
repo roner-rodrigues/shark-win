@@ -3,7 +3,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './base.css';
 import './BetBarContainer.css';
-import barraDourada from './assets/tela/barra_dourada.png';
+import './BetHeaderBarContainer.css';
+import './BetStatusBarContainer.css';
 
 import Navbar         from './Navbar';
 import WinningSound   from './WinningSound'; 
@@ -51,8 +52,8 @@ function MainContent({
 
                     <div className="spinner-container">
                         {winner && <div className="winner-overlay"></div>}
-
                         <div className="lateral-column-left"></div>
+                        
                         <Spinner 
                             id               = "0"
                             timer            = "850"
@@ -101,11 +102,11 @@ function MainContent({
                         <div className="bet-header-bar-container">
                             <div className={ winner !== true ? 
                                 "scrolling-text" : 
-                                "" 
+                                "winner-text" 
                             }>
 
                             { winner ? 
-                                totalWinnings : 
+                                "Win " + totalWinnings : 
                                 "Jogue Shark Win para ganhar diversos prêmios!"
                             }
                             </div>

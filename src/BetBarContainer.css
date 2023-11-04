@@ -1,71 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-
-@keyframes moverLetreiro {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
 .bet-bar-container {
-    background-color: rgb(28, 53, 106);
+    position: relative; /* Necessário para posicionar corretamente o pseudo-elemento */
+    background-color: #4646AF;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     overflow: hidden; 
     color: #fff;
+    padding-bottom: 15px;
+    border-bottom-left-radius: 15% 5%; /* Para criar o efeito curvado no canto inferior esquerdo */
+    border-bottom-right-radius: 15% 5%; /* Para criar o efeito curvado no canto inferior direito */
+    margin-bottom: -20px; /* ou o valor necessário para tapar o espaço */
+    z-index: 255;
+
 }
 
-.bet-header-bar-container {
-  background: linear-gradient(90deg, #0a2845, #0f3f7e, #0a2845); 
-  border: 4px solid #00f2ff; 
-  border-radius: 15px;  
-  box-shadow: 0 0 15px #0f3f7e;  
-  margin: 10px 5px;  
-  overflow: hidden;
-  position: relative;
-}
-
-.scrolling-text {
-  padding-top: 20px;
-  font-family: "Dancing Script", cursive;
-  font-size: 2rem;
-  text-shadow: 
-  1px 1px 0 #000,
-    2px 2px 0 #000,
-    3px 3px 0 #000,
-    4px 4px 0 #000;
-  white-space: nowrap;
-  animation: moverLetreiro 10s linear infinite;
-}
-
-.bet-status-bar-container {
-    padding: 10px 0;
-    display: flex; 
-    justify-content: space-between;
-    background-color: inherit;
-}
-
-.bet-status-bar-container .col {
-    background-color: #001f3f; 
-    color: aliceblue; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    padding: 5px 15px;
-    flex: 1;
-    margin: 0 5px;
-    justify-content: space-between;
-}
-
-.bet-status-bar-container .col .svg-inline--fa { 
-    color: gold; 
-}
-
-.bet-status-bar-container .col:first-child {
-    margin-left: 3px; 
-}
-
-.bet-status-bar-container .col:last-child {
-    margin-right: 3px; 
+.bet-bar-container::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 70%; /* Largura do elemento ondulado */
+    height: 20px; /* Altura do elemento ondulado */
+    background: #4646AF; /* Cor de fundo para se misturar com o container */
+    border-radius: 50% 50% 0 0; /* Para criar o efeito ondulado na parte inferior */
+    transform: translateX(-50%); /* Centralizar o elemento */
+    z-index: -1; /* Colocar atrás do conteúdo principal */
 }
