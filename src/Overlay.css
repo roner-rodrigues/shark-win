@@ -21,3 +21,14 @@
     transform: scale(1.25); 
 }
   
+.payout-overlay {
+    position: absolute; /* Posicionamento absoluto */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza o elemento exatamente */
+    font-size: 48px; /* Ajuste conforme o necessário */
+    font-weight: bold; /* Para o texto em negrito */
+    color: #FFA500; /* Ajuste para a cor desejada */
+    z-index: 10; /* Ajuste o z-index conforme necessário */
+}
+  

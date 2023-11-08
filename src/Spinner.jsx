@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { TOTAL_ICONS, ICON_HEIGHT, MULTIPLIER, SYMBOLS_INDEXES } 
+import { TOTAL_ICONS, ICON_HEIGHT, MULTIPLIER, symbolsPositions } 
     from './constants';
 import Overlay from './Overlay';  
 import './Spinner.css';
+import './LateralColumnWrappers.css';
 
 const Spinner = React.forwardRef((props, ref) => {
     const [position, setPosition]               = useState(0);
@@ -14,17 +15,6 @@ const Spinner = React.forwardRef((props, ref) => {
     }
     const start = useRef(setStartPosition());
 
-    const getIconPositions = () => {
-        const positionsArr = [];
-        
-        for(let key in SYMBOLS_INDEXES) {
-            positionsArr.push(SYMBOLS_INDEXES[key]);
-        }
-        
-        return positionsArr;
-    }
-    const iconPositions = getIconPositions();    
-    
     useEffect(() => {
         setLocalHasPlayed(props.hasPlayed);
     }, [props.hasPlayed]);
@@ -58,7 +48,7 @@ const Spinner = React.forwardRef((props, ref) => {
 
     const stopSpinner = () => {
         if(props.hasCheated) {
-            setPosition(iconPositions[props.forcedSymbol]);
+            setPosition(symbolsPositions[props.forcedSymbol]);
         } else {
             let currentPosition = Math.abs(position);
             currentPosition %= (ICON_HEIGHT * TOTAL_ICONS);
@@ -71,7 +61,7 @@ const Spinner = React.forwardRef((props, ref) => {
     const getSymbolFromPosition = () => {
         let index;
         if(props.hasCheated)
-            index = Math.abs(iconPositions[props.forcedSymbol]) % (ICON_HEIGHT * TOTAL_ICONS);
+            index = Math.abs(symbolsPositions[props.forcedSymbol]) % (ICON_HEIGHT * TOTAL_ICONS);
         else
             index = Math.abs(position) % (ICON_HEIGHT * TOTAL_ICONS);
         

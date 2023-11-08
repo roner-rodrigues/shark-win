@@ -54,7 +54,7 @@ h1 span {
 
 * { box-sizing: border-box; }
 
-.spinner-container {
+.spinners-container {
   overflow: hidden;
   height: 632px;  
   padding: 2em;
@@ -70,7 +70,7 @@ h1 span {
   animation: linear 1s spin;
 }
 
-.spinner-container::after {
+.spinners-container::after {
   position: absolute;
   content: '';
   display: block;
@@ -98,7 +98,7 @@ h1 span {
 }
 
 @media screen and (max-width: 1000px) {
-  .spinner-container {
+  .spinners-container {
     transform: translate(-50%, -50%) scale(.55, .55);
   }
 }

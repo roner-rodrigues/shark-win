@@ -8,7 +8,7 @@
     position: relative;
 }
 
-.spinner-container {
+.spinners-container {
     display: flex;
     justify-content: center; 
     align-items: stretch; /* garante que os itens filhos estendam-se na direção do eixo transversal */
@@ -19,30 +19,12 @@
     height: 100%; /* ou defina um valor específico como 600px, por exemplo */
 }
 
-.spinner-container > .col-1 {
+.spinners-container > .col-1 {
     flex: 0 0 8.33%;  /* equivale a 1/12 */
     max-width: 8.33%;
 }
 
-.spinner-container > .col-3 {
+.spinners-container > .col-3 {
     flex: 0 0 25%;  /* equivale a 3/12 */
     max-width: 25%;
-}
-
-.lateral-column-left,
-.lateral-column-right {
-    display: flex;  /* garante que o conteúdo destas colunas estique de acordo */
-    align-items: center;  /* centraliza o conteúdo no eixo vertical */
-    justify-content: center;  /* centraliza o conteúdo no eixo horizontal */
-    flex-grow: 1; /* Isso faz com que as colunas laterais ocupem todo o espaço disponível */
-}
-
-.lateral-column-left {
-    background: url('assets/tela/lateral-esquerda.png') no-repeat center center;
-    background-size: cover;
-}
-
-.lateral-column-right {
-    background: url('assets/tela/lateral-direita.png') no-repeat center center;
-    background-size: cover;
 }

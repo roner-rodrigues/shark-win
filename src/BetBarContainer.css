@@ -7,7 +7,7 @@
     padding-bottom: 15px;
     border-bottom-left-radius: 15% 5%; /* Para criar o efeito curvado no canto inferior esquerdo */
     border-bottom-right-radius: 15% 5%; /* Para criar o efeito curvado no canto inferior direito */
-    margin-bottom: -20px; /* ou o valor necessário para tapar o espaço */
+    margin-bottom: -60px;
     z-index: 255;
 
 }

@@ -1,5 +1,3 @@
-import React, { useState, useRef, useEffect } from 'react';
-
 import 'bootstrap/dist/css/bootstrap.css';
 import './base.css';
 import './BetBarContainer.css';
@@ -26,19 +24,16 @@ function MainContent({
     betAmount,
     hasPlayed,
     finishHandler,
-    child1,
-    child2,
-    child3,
     walletAmount,
     totalWinnings,
     handleDecreaseBet,
-    handleClick,
+    handleSpin,
     handleIncreaseBet,
-    
     hasCheated,
     forcedSymbol,
     winnerIndexesPosArr,
     winnerIndexesSymbolsArr,
+    spinnerRefs
 }) {
     return (
         <div className="container-fluid h-100">
@@ -50,14 +45,21 @@ function MainContent({
                         <img src={bannerPrincipal} />                    
                     </div>
 
-                    <div className="spinner-container">
+                    <div className="spinners-container">
                         {winner && <div className="winner-overlay"></div>}
-                        <div className="lateral-column-left"></div>
                         
+                        <div className="lateral-column-wrapper-left">
+                            {/* <div className="icon-container">
+                                <div className="icon icon-mult-1">4</div>
+                            </div> */}
+                            <div className="lateral-column-left"></div>
+                        </div>
+
+
                         <Spinner 
                             id               = "0"
                             timer            = "850"
-                            ref              = {child1} 
+                            ref              = {spinnerRefs.current[0]} 
                             betAmount        = {betAmount} 
                             hasPlayed        = {hasPlayed} 
                             onFinish         = {finishHandler} 
@@ -71,7 +73,7 @@ function MainContent({
                         <Spinner 
                             id               = "1"
                             timer            = "800" 
-                            ref              = {child2} 
+                            ref              = {spinnerRefs.current[1]} 
                             betAmount        = {betAmount} 
                             hasPlayed        = {hasPlayed} 
                             onFinish         = {finishHandler} 
@@ -85,7 +87,7 @@ function MainContent({
                         <Spinner 
                             id               = "2"
                             timer            = "900" 
-                            ref              = {child3} 
+                            ref              = {spinnerRefs.current[2]} 
                             betAmount        = {betAmount} 
                             hasPlayed        = {hasPlayed} 
                             onFinish         = {finishHandler}
@@ -130,7 +132,7 @@ function MainContent({
                             <BetDecreaseBtn onClick={handleDecreaseBet} />
                             
                             <RepeatButton 
-                                onClick={handleClick} 
+                                onClick={handleSpin} 
                                 className={winner === null ? "disabled" : ""}
                             />
 
