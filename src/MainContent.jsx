@@ -33,6 +33,7 @@ function MainContent({
     forcedSymbol,
     winnerIndexesPosArr,
     winnerIndexesSymbolsArr,
+    actualPayout,
     spinnerRefs
 }) {
     return (
@@ -44,9 +45,8 @@ function MainContent({
                     <div className="gif-container">
                         <img src={bannerPrincipal} />                    
                     </div>
-
                     <div className="spinners-container">
-                        {winner && <div className="winner-overlay"></div>}
+                        {/* {winner && <div className="winner-overlay"></div>} */}
                         
                         <div className="lateral-column-wrapper-left">
                             {/* <div className="icon-container">
@@ -55,12 +55,10 @@ function MainContent({
                             <div className="lateral-column-left"></div>
                         </div>
 
-
                         <Spinner 
-                            id               = "0"
+                            id               = {0}
                             timer            = "850"
                             ref              = {spinnerRefs.current[0]} 
-                            betAmount        = {betAmount} 
                             hasPlayed        = {hasPlayed} 
                             onFinish         = {finishHandler} 
                             hasCheated       = {hasCheated}
@@ -71,10 +69,9 @@ function MainContent({
                         />
 
                         <Spinner 
-                            id               = "1"
+                            id               = {1}
                             timer            = "800" 
                             ref              = {spinnerRefs.current[1]} 
-                            betAmount        = {betAmount} 
                             hasPlayed        = {hasPlayed} 
                             onFinish         = {finishHandler} 
                             hasCheated       = {hasCheated}
@@ -82,13 +79,13 @@ function MainContent({
                             showOverlay      = {winner}
                             overlayIdx       = {winnerIndexesPosArr[1]}
                             overlaySymbolIdx = {winnerIndexesSymbolsArr[1]}
+                            actualPayout    = {actualPayout}
                         />
                         
                         <Spinner 
-                            id               = "2"
+                            id               = {2}
                             timer            = "900" 
                             ref              = {spinnerRefs.current[2]} 
-                            betAmount        = {betAmount} 
                             hasPlayed        = {hasPlayed} 
                             onFinish         = {finishHandler}
                             hasCheated       = {hasCheated}
@@ -115,13 +112,13 @@ function MainContent({
                         </div>
                         <div className="bet-status-bar-container">
                             <div className="col">
-                                <FontAwesomeIcon icon={faWallet} /> {walletAmount}
+                                <FontAwesomeIcon icon={faWallet} /> {walletAmount.toFixed(2)}
                             </div>
                             <div className="col">
-                                <FontAwesomeIcon icon={faCoins} />  {betAmount}
+                                <FontAwesomeIcon icon={faCoins} /> {betAmount.toFixed(2)}
                             </div>
                             <div className="col">
-                                <FontAwesomeIcon icon={faTrophy} /> {totalWinnings}
+                                <FontAwesomeIcon icon={faTrophy} /> {totalWinnings.toFixed(2)}
                             </div>
                         </div>
                     </div>

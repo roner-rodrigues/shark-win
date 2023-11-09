@@ -15,6 +15,7 @@ function App() {
     totalWinnings,
     winnerIndexesPosArr,
     winnerIndexesSymbolsArr,
+    actualPayout,
     finishHandler,
     handleDecreaseBet,
     handleIncreaseBet,
@@ -34,10 +35,11 @@ function App() {
       handleSpin={handleSpin} 
       handleIncreaseBet={handleIncreaseBet}
       winner={winner}
-      hasCheated={hasCheated}
+      hasCheated={1}
       forcedSymbol={CHOSEN_INDEX}
       winnerIndexesPosArr={winnerIndexesPosArr}
       winnerIndexesSymbolsArr={winnerIndexesSymbolsArr}
+      actualPayout={actualPayout}
       spinnerRefs={spinnerRefs}
     />
   );

@@ -4,8 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px; /* Esta altura deve estar definida para a altura em % do filho funcionar */
-    background: url('assets/tela/baixo_limpo.png') center no-repeat;
+    height: 190px; /* Esta altura deve estar definida para a altura em % do filho funcionar */
+    background: url('assets/tela/baixo-limpo.png') center no-repeat;
     background-size: 100% 100%;
 }
 

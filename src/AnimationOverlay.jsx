@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import './Overlay.css';
+import './AnimationOverlay.css';
 import { useLottie } from 'lottie-react';
 import { ANIMATION_INDEXES, ICON_HEIGHT } from './constants'; 
 
-function Overlay({ yPosition, animationIndex }) {
+function AnimationOverlay({ yPosition, animationIndex }) {
     const animations = Object.values(ANIMATION_INDEXES);
     // console.log(animations);
 
@@ -17,17 +16,11 @@ function Overlay({ yPosition, animationIndex }) {
     };
     const { View } = useLottie(options);
     
-    // return (
-    //     <div className="icon-overlay scale-animation" style={{ top: yPosition * ICON_HEIGHT + 23 + 'px' }}>
-    //         {View}
-    //     </div>
-    // );   
-
     return (
-        <div className="payout-overlay">
-            1.80
+        <div className="icon-overlay scale-animation" style={{ top: yPosition * ICON_HEIGHT + 23 + 'px' }}>
+            {View}
         </div>
-    );
+    );   
 }
 
-export default Overlay;
+export default AnimationOverlay;

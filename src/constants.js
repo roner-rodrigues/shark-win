@@ -26,8 +26,8 @@ export const SYMBOLS_INDEXES = {
     Peixe_idx:       -1128, 
     Bonus2_idx:      -1316  
 }
-export const CHOSEN_INDEX = 5;
 export const WILD_INDEX   = 5;
+export const CHOSEN_INDEX = 6;
 
 const getSymbolsPositions = () => {
     const positionsArr = [];
@@ -47,7 +47,7 @@ export const SYMBOLS_PAYOUTS = {
     Perola_x:      10,  
     Mergulhador_x: 25,  
     Tubarao_x:     100,  
-    Camarao_x:     250,  
+    Camarao_x:     3,  
     Peixe_x:       1, 
     Bonus2_x:      1 
 }

@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { TOTAL_ICONS, ICON_HEIGHT, MULTIPLIER, symbolsPositions } 
     from './constants';
-import Overlay from './Overlay';  
+import AnimationOverlay from './AnimationOverlay';  
+import PayoutOverlay from './PayoutOverlay';  
 import './Spinner.css';
 import './LateralColumnWrappers.css';
 
@@ -80,11 +81,18 @@ const Spinner = React.forwardRef((props, ref) => {
     return (            
         <div 
             style={{backgroundPosition: 'center ' + position + 'px'}}
-            className={`icons`}              
-        >
-           {props.showOverlay && <Overlay 
+            className={`icons`} >
+
+            {props.showOverlay && <div className="winner-overlay"></div>}
+
+            {props.showOverlay && <AnimationOverlay 
                 yPosition={props.overlayIdx} 
                 animationIndex={props.overlaySymbolIdx} />
+            }
+
+            {(props.id === 1 && props.showOverlay) && <PayoutOverlay 
+                yPosition={props.overlayIdx} 
+                payoutValue={props.actualPayout} />
             }
         </div>
    )   

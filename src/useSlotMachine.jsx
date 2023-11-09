@@ -2,16 +2,19 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { TOTAL_ICONS, WILD_INDEX, symbolsPayouts } from './constants';
 
 function useSlotMachine() {
+  // States
   const [winner, setWinner]                           = useState(false);
   const [hasPlayed, setHasPlayed]                     = useState(false);
   const [hasCheated, setHasCheated]                   = useState(false);
   const [walletAmount, setWalletAmount]               = useState(1000);
-  const [betAmount, setBetAmount]                     = useState(0);
+  const [betAmount, setBetAmount]                     = useState(3.00);
+  const [actualPayout, setActualPayout]               = useState(null);
   const [totalWinnings, setTotalWinnings]             = useState(0);
   const [winnerSymbolPayout, setWinnerSymbolPayout]   = useState(null);
   const [winnerIndexesPosArr, setWinnerIndexesPosArr] = useState([]);
   const [winnerIndexesSymbolsArr, setWinnerIndexesSymbolsArr] 
     = useState([]);
+  // Refs
   const matches                                       = useRef([null, null, null]);
   const spinnerRefs 
     = useRef([React.createRef(), React.createRef(), React.createRef()]);
@@ -49,55 +52,77 @@ function useSlotMachine() {
   }, []);
 
   const checkBetLines = useCallback((matrix) => {
-    let foundWinner = false;
-
     // Check horizontal and diagonal lines for a win
     const checkLine = (index1, index2, index3) => {
       const arrSymbols = [matrix[index1][0], matrix[index2][1], matrix[index3][2]];
+      
+      // Identifica todos os coringas na linha
       const wildCount = arrSymbols.filter(x => x === WILD_INDEX).length;
+      let referencePayoutArr = [];
 
+      // 1 ou mais coringas
       if (wildCount > 0) {
         if (wildCount == 3) {
           setWinnerIndexesPosArr([index1, index2, index3]);
           setWinnerIndexesSymbolsArr([arrSymbols[0], arrSymbols[1], arrSymbols[2]]);
-          setWinnerSymbolPayout(symbolsPayouts[WILD_INDEX]);
-          
-          foundWinner = true;
-          return;
+          setWinnerSymbolPayout(symbolsPayouts[WILD_INDEX]);       
+          setWinner(true);
+          return true;
         } else {
+          // 2 coringas
           if (wildCount == 2) {
-            const referencePayout = arrSymbols.filter(x => x !== WILD_INDEX);
-
-            let a = 1;
-
+            referencePayoutArr = arrSymbols.filter(x => x !== WILD_INDEX);
+            setWinnerIndexesPosArr([index1, index2, index3]);
+            setWinnerIndexesSymbolsArr([arrSymbols[0], arrSymbols[1], arrSymbols[2]]);
+            setWinnerSymbolPayout(symbolsPayouts[referencePayoutArr[0]]);       
+            setWinner(true);
+            return true;
+          } 
+          // Nenhum coringa
+          else {
+            referencePayoutArr = arrSymbols.filter(x => x !== WILD_INDEX);
+            // Os outros 2 itens na linha são iguais
+            if (referencePayoutArr.every( (val, i, arr) => val === arr[0] )) {
+              setWinnerIndexesPosArr([index1, index2, index3]);
+              setWinnerIndexesSymbolsArr([arrSymbols[0], arrSymbols[1], arrSymbols[2]]);
+              setWinnerSymbolPayout(symbolsPayouts[referencePayoutArr[0]]);       
+              setWinner(true);
+              return true;
+            }
+            else {
+              setWinner(false);
+              return false;
+            }
           }
-
         }
-      }
-
-
-
-
-      if (matrix[index1][0] === matrix[index2][1] && matrix[index2][1] === matrix[index3][2]) {
-        setWinnerIndexesPosArr([index1, index2, index3]);
-        setWinnerIndexesSymbolsArr([matrix[index1][0], matrix[index2][1], matrix[index3][2]]);
-        foundWinner = true;
+      } else {
+        if (matrix[index1][0] === matrix[index2][1] && matrix[index2][1] === matrix[index3][2]) {
+          setWinnerIndexesPosArr([index1, index2, index3]);
+          setWinnerIndexesSymbolsArr([matrix[index1][0], matrix[index2][1], matrix[index3][2]]);
+          setWinnerSymbolPayout(symbolsPayouts[matrix[index1][0]]);
+          setWinner(true)
+          return true;
+        } else {
+          setWinner(false)
+          return false;
+        }
       }
     };
 
     // Middle row
-    checkLine(1, 1, 1);
-    // // Top row
-    // checkLine(0, 0, 0);
-    // // Bottom row
-    // checkLine(2, 2, 2);
+    if (checkLine(1, 1, 1))
+      return true;
+    // else
     // // Diagonal left-to-right
     // checkLine(0, 1, 2);
     // // Diagonal right-to-left
     // checkLine(2, 1, 0);
-
-    foundWinner = true;
-    setWinner(foundWinner);
+    
+    // // Top row
+    // checkLine(0, 0, 0);
+    // // Bottom row
+    // checkLine(2, 2, 2);
+    
   }, []);
 
   const handleSpin = useCallback(() => {
@@ -106,39 +131,30 @@ function useSlotMachine() {
     setHasPlayed(true);
     setWalletAmount(prevWallet => prevWallet - betAmount);
 
-    let chance = Math.random(); 
-    let activationProbability = calculateProbability(betAmount);
-    
-    setHasCheated(chance <= activationProbability);
+    // let chance = Math.random(); 
+    // let activationProbability = calculateProbability(betAmount);
+    // setHasCheated(chance <= activationProbability);
 
     spinnerRefs.current.forEach(ref => {
       ref.current?.forceUpdateHandler(); 
     });
-  }, [betAmount, calculateProbability, emptyMatchesArray]);
+  }, [betAmount, calculateProbability, emptyMatchesArray, spinnerRefs]);
 
   const handleIncreaseBet = useCallback(() => {
-    setBetAmount(prevBet => Math.min(prevBet + 10, 50));
+    setBetAmount(prevBet => Math.min(prevBet + 1.50, 50));
   }, []);
 
   const handleDecreaseBet = useCallback(() => {
     setBetAmount(prevBet => Math.max(prevBet - 10, 0));
   }, []);
   
-
-
   useEffect(() => {
     if (winner) {
-      const winningSymbolKey = winnerIndexesSymbolsArr[0] + "_x"; 
-      const winnings = symbolsPayouts[0] || 0; 
-
-      setTotalWinnings(prevWinnings => prevWinnings + winnings);
+      const localActualPayout = winnerSymbolPayout * betAmount;
+      setActualPayout(localActualPayout);
+      setTotalWinnings(prevWinnings => prevWinnings + localActualPayout);
     }
-  }, [winner, winnerIndexesSymbolsArr]);
-
-
-  
-
-
+  }, [winner, winnerSymbolPayout, betAmount]);
 
   const finishHandler = useCallback((value, spinnerId) => {
     if (!hasPlayed) return;  
@@ -149,7 +165,7 @@ function useSlotMachine() {
       const visibleMatrix = computeVisibleIndicesTransposed();
       checkBetLines(visibleMatrix);
     }
-  }, [hasPlayed, computeVisibleIndicesTransposed, checkBetLines]);
+  }, [hasPlayed]);
 
   return {
     winner,
@@ -160,6 +176,7 @@ function useSlotMachine() {
     totalWinnings,
     winnerIndexesPosArr,
     winnerIndexesSymbolsArr,
+    actualPayout,
     finishHandler,
     handleDecreaseBet,
     handleIncreaseBet,

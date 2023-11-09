@@ -4,7 +4,7 @@
     align-items: center;  
     justify-content: center; 
     flex-grow: 1; 
-    background: url('assets/tela/lateral-esquerda.png') no-repeat center center;
+    background: url('assets/tela/esq-lateral.png') no-repeat center center;
     background-size: cover;
 }
 
@@ -16,12 +16,9 @@
 }
 
 .lateral-column-right {
-    background: url('assets/tela/lateral-direita.png') no-repeat center center;
+    background: url('assets/tela/dir-lateral.png') no-repeat center center;
     background-size: cover;
 }
-
-
-
 
 .icon-container {
     display: flex;

@@ -1,26 +1,9 @@
 .bet-bar-container {
-    position: relative; /* Necessário para posicionar corretamente o pseudo-elemento */
     background-color: #4646AF;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     overflow: hidden; 
     color: #fff;
-    padding-bottom: 15px;
-    border-bottom-left-radius: 15% 5%; /* Para criar o efeito curvado no canto inferior esquerdo */
-    border-bottom-right-radius: 15% 5%; /* Para criar o efeito curvado no canto inferior direito */
-    margin-bottom: -60px;
-    z-index: 255;
-
+    /* background: url('assets/tela/baixo-limpo.png') center no-repeat;
+    background-size: 100% 100%; */
 }
 
-.bet-bar-container::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 70%; /* Largura do elemento ondulado */
-    height: 20px; /* Altura do elemento ondulado */
-    background: #4646AF; /* Cor de fundo para se misturar com o container */
-    border-radius: 50% 50% 0 0; /* Para criar o efeito ondulado na parte inferior */
-    transform: translateX(-50%); /* Centralizar o elemento */
-    z-index: -1; /* Colocar atrás do conteúdo principal */
-}
