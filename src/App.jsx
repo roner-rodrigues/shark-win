@@ -9,7 +9,6 @@ function App() {
   const {
     winner,
     hasPlayed,
-    hasCheated,
     walletAmount,
     betAmount,
     totalWinnings,

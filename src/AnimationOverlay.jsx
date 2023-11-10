@@ -17,7 +17,9 @@ function AnimationOverlay({ yPosition, animationIndex }) {
     const { View } = useLottie(options);
     
     return (
-        <div className="icon-overlay scale-animation" style={{ top: yPosition * ICON_HEIGHT + 23 + 'px' }}>
+        <div className="icon-overlay scale-animation" 
+            // style={{ top: yPosition * ICON_HEIGHT + 23 + 'px' }}>
+            style={{ top: yPosition * ICON_HEIGHT + 'px' }}>
             {View}
         </div>
     );   

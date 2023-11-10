@@ -79,7 +79,7 @@ function MainContent({
                             showOverlay      = {winner}
                             overlayIdx       = {winnerIndexesPosArr[1]}
                             overlaySymbolIdx = {winnerIndexesSymbolsArr[1]}
-                            actualPayout    = {actualPayout}
+                            actualPayout     = {actualPayout}
                         />
                         
                         <Spinner 
@@ -89,7 +89,7 @@ function MainContent({
                             hasPlayed        = {hasPlayed} 
                             onFinish         = {finishHandler}
                             hasCheated       = {hasCheated}
-                            forcedSymbol     = {forcedSymbol}
+                            forcedSymbol     = {forcedSymbol+1}
                             showOverlay      = {winner}
                             overlayIdx       = {winnerIndexesPosArr[2]} 
                             overlaySymbolIdx = {winnerIndexesSymbolsArr[2]}

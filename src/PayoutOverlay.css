@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
+@keyframes blink {
+    0%, 80%, 100% { opacity: 1; }
+    90% { opacity: 0; }
+}
+
 .payout-overlay {
     font-style:  italic;
     position: absolute;
@@ -18,8 +23,11 @@
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-
     -webkit-text-stroke-width: 1.5px;
     -webkit-text-stroke-color: rgb(198, 86, 0);
 }
   
+
+.blinking {
+    animation: blink 4.5s infinite;
+}

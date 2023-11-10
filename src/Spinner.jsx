@@ -78,6 +78,8 @@ const Spinner = React.forwardRef((props, ref) => {
         }
     }));
 
+    const shouldRenderPayoutOverlay = props.id === 1 && props.showOverlay && props.actualPayout;
+
     return (            
         <div 
             style={{backgroundPosition: 'center ' + position + 'px'}}
@@ -90,12 +92,11 @@ const Spinner = React.forwardRef((props, ref) => {
                 animationIndex={props.overlaySymbolIdx} />
             }
 
-            {(props.id === 1 && props.showOverlay) && <PayoutOverlay 
+            {shouldRenderPayoutOverlay && <PayoutOverlay 
                 yPosition={props.overlayIdx} 
                 payoutValue={props.actualPayout} />
             }
         </div>
    )   
 });
-
 export default Spinner;

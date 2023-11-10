@@ -4,8 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 190px; /* Esta altura deve estar definida para a altura em % do filho funcionar */
-    background: url('assets/tela/baixo-limpo.png') center no-repeat;
+    height: 175px; 
+    background: url('assets/tela/baixo-tela.png') center no-repeat;
     background-size: 100% 100%;
 }
 
@@ -54,8 +54,8 @@
     border: none;
     background: url('assets/buttons/play-btn.png') transparent 0 0 no-repeat;
     background-size: cover;
-    width:  68px;
-    height: 68px;
+    width:  98px;
+    height: 98px;
     cursor: pointer;
     animation: 6s linear infinite spin;
 }

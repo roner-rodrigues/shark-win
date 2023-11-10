@@ -2,7 +2,7 @@
     width: 148px;
     height: 564px;
     overflow: hidden;
-    background: #fff url('assets/TIRA_148x1692.png') repeat-y;
+    background: #fff url('assets/tela/TIRA_148x994.png') repeat-y;
     will-change: backgroundPosition;
     transition: 0.3s background-position ease-in-out;
     position: relative;
@@ -16,7 +16,7 @@
     overflow: hidden;
     transition: 0.3s transform;
     width: 100%;
-    height: 100%; /* ou defina um valor específico como 600px, por exemplo */
+    height: 426px;
 }
 
 .spinners-container > .col-1 {

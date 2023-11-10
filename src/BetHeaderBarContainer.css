@@ -17,7 +17,7 @@
     border: 2px solid #00f2ff; 
     border-radius: 15px;  
     box-shadow: 0 0 15px #0f3f7e;  
-    margin: 15px 15px;  
+    margin: 25px 15px 15px 15px;  
     overflow: hidden;
     position: relative;
 }

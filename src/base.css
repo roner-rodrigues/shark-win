@@ -21,7 +21,6 @@ body {
 * { box-sizing: border-box; }
 
 .container-fluid {
-  /* width:  1250px;  */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,14 +30,13 @@ body {
 
 .parent-container {
   width:  580px; 
-  transform: scale(.62, .62);
+  transform: scale(.58, .58);
   transform-origin: top center;
   overflow: hidden;
   margin-top: 10px;
   position: relative;
 }
 
-  
 .gif-container {
   height: 200px;
 }

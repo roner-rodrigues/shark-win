@@ -5,7 +5,6 @@ function useSlotMachine() {
   // States
   const [winner, setWinner]                           = useState(false);
   const [hasPlayed, setHasPlayed]                     = useState(false);
-  const [hasCheated, setHasCheated]                   = useState(false);
   const [walletAmount, setWalletAmount]               = useState(1000);
   const [betAmount, setBetAmount]                     = useState(3.00);
   const [actualPayout, setActualPayout]               = useState(null);
@@ -20,16 +19,16 @@ function useSlotMachine() {
     = useRef([React.createRef(), React.createRef(), React.createRef()]);
 
 
-  const calculateProbability = useCallback((betAmount) => {
-    const minAmount = 1.50;
-    const maxAmount = 50;
-    const minProbability = 0.15; // 15%
-    const maxProbability = 1;    // 100%
+  // const calculateProbability = useCallback((betAmount) => {
+  //   const minAmount = 1.50;
+  //   const maxAmount = 50;
+  //   const minProbability = 0.15; // 15%
+  //   const maxProbability = 1;    // 100%
 
-    const slope = (maxProbability - minProbability) / (maxAmount - minAmount);
-    const prob = slope * (betAmount - minAmount) + minProbability;
-    return prob;
-  }, []);
+  //   const slope = (maxProbability - minProbability) / (maxAmount - minAmount);
+  //   const prob = slope * (betAmount - minAmount) + minProbability;
+  //   return prob;
+  // }, []);
 
   const computeVisibleIndicesTransposed = useCallback(() => {
     const topValues = [];
@@ -65,7 +64,8 @@ function useSlotMachine() {
         if (wildCount == 3) {
           setWinnerIndexesPosArr([index1, index2, index3]);
           setWinnerIndexesSymbolsArr([arrSymbols[0], arrSymbols[1], arrSymbols[2]]);
-          setWinnerSymbolPayout(symbolsPayouts[WILD_INDEX]);       
+          // setWinnerSymbolPayout(symbolsPayouts[WILD_INDEX]);       
+          setWinnerSymbolPayout(250);       
           setWinner(true);
           return true;
         } else {
@@ -138,7 +138,7 @@ function useSlotMachine() {
     spinnerRefs.current.forEach(ref => {
       ref.current?.forceUpdateHandler(); 
     });
-  }, [betAmount, calculateProbability, emptyMatchesArray, spinnerRefs]);
+  }, [betAmount, emptyMatchesArray, spinnerRefs]);
 
   const handleIncreaseBet = useCallback(() => {
     setBetAmount(prevBet => Math.min(prevBet + 1.50, 50));
@@ -170,7 +170,6 @@ function useSlotMachine() {
   return {
     winner,
     hasPlayed,
-    hasCheated,
     walletAmount,
     betAmount,
     totalWinnings,
