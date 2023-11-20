@@ -13,11 +13,11 @@ function useSlotMachine() {
   const [winnerIndexesPosArr, setWinnerIndexesPosArr] = useState([]);
   const [winnerIndexesSymbolsArr, setWinnerIndexesSymbolsArr] 
     = useState([]);
+    
   // Refs
   const matches                                       = useRef([null, null, null]);
   const spinnerRefs 
     = useRef([React.createRef(), React.createRef(), React.createRef()]);
-
 
   // const calculateProbability = useCallback((betAmount) => {
   //   const minAmount = 1.50;
@@ -64,8 +64,7 @@ function useSlotMachine() {
         if (wildCount == 3) {
           setWinnerIndexesPosArr([index1, index2, index3]);
           setWinnerIndexesSymbolsArr([arrSymbols[0], arrSymbols[1], arrSymbols[2]]);
-          // setWinnerSymbolPayout(symbolsPayouts[WILD_INDEX]);       
-          setWinnerSymbolPayout(250);       
+          setWinnerSymbolPayout(symbolsPayouts[WILD_INDEX]);       
           setWinner(true);
           return true;
         } else {
@@ -134,7 +133,6 @@ function useSlotMachine() {
     // let chance = Math.random(); 
     // let activationProbability = calculateProbability(betAmount);
     // setHasCheated(chance <= activationProbability);
-
     spinnerRefs.current.forEach(ref => {
       ref.current?.forceUpdateHandler(); 
     });

@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { TOTAL_ICONS, ICON_HEIGHT, MULTIPLIER, symbolsPositions } 
     from './constants';
 import AnimationOverlay from './AnimationOverlay';  
-import PayoutOverlay from './PayoutOverlay';  
+import PayoutOverlay    from './PayoutOverlay';  
+import LineOverlay      from './LineOverlay';  
 import './Spinner.css';
 import './LateralColumnWrappers.css';
 
@@ -10,7 +11,7 @@ const Spinner = React.forwardRef((props, ref) => {
     const [position, setPosition]               = useState(0);
     const [timeRemaining, setTimeRemaining]     = useState(props.timer);
     const [localHasPlayed,  setLocalHasPlayed]  = useState(false);
-
+    
     const setStartPosition = () => {
         return ((Math.floor((Math.random()*TOTAL_ICONS))) * ICON_HEIGHT)*-1;
     }
@@ -79,7 +80,6 @@ const Spinner = React.forwardRef((props, ref) => {
     }));
 
     const shouldRenderPayoutOverlay = props.id === 1 && props.showOverlay && props.actualPayout;
-
     return (            
         <div 
             style={{backgroundPosition: 'center ' + position + 'px'}}
@@ -96,6 +96,13 @@ const Spinner = React.forwardRef((props, ref) => {
                 yPosition={props.overlayIdx} 
                 payoutValue={props.actualPayout} />
             }
+            
+            {/*             
+            {props.showOverlay && <LineOverlay 
+                yPosition={props.overlayIdx} 
+                animationIndex={props.overlaySymbolIdx} />
+            }
+            */}
         </div>
    )   
 });

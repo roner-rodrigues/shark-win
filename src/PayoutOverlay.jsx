@@ -10,5 +10,4 @@ function PayoutOverlay({ payoutValue, yPosition }) {
         </div>
     );
 }
-
 export default PayoutOverlay;

@@ -18,6 +18,8 @@ import { FontAwesomeIcon }
 import { faWallet, faCoins, faTrophy } 
     from '@fortawesome/free-solid-svg-icons';
 
+import BetDisplayOverlay from './BetDisplayOverlay';  
+
 function MainContent({
     winner, 
     bannerPrincipal,
@@ -38,7 +40,7 @@ function MainContent({
 }) {
     return (
         <div className="container-fluid h-100">
-            <Navbar />
+            {/* <Navbar /> */}
             {winner === true && <WinningSound />}
             <div className="row h-100 align-items-center justify-content-center">
                 <div className="custom-container parent-container">
@@ -46,8 +48,6 @@ function MainContent({
                         <img src={bannerPrincipal} />                    
                     </div>
                     <div className="spinners-container">
-                        {/* {winner && <div className="winner-overlay"></div>} */}
-                        
                         <div className="lateral-column-wrapper-left">
                             {/* <div className="icon-container">
                                 <div className="icon icon-mult-1">4</div>
@@ -99,15 +99,19 @@ function MainContent({
 
                     <div className="bet-bar-container">
                         <div className="bet-header-bar-container">
-                            <div className={ winner !== true ? 
-                                "scrolling-text" : 
-                                "winner-text" 
-                            }>
+                            {/* {winner && <BetDisplayOverlay />} */}
+                            
+                            <div className=
+                                { winner !== true ? 
+                                    "scrolling-text" : 
+                                    "winner-text" 
+                                }
+                            >
 
-                            { winner ? 
-                                "Win " + totalWinnings : 
-                                "Jogue Shark Win para ganhar diversos prêmios!"
-                            }
+                                { winner ? 
+                                    "Win " + totalWinnings.toFixed(2) : 
+                                    "Jogue Shark Win para ganhar diversos prêmios!"
+                                }
                             </div>
                         </div>
                         <div className="bet-status-bar-container">
@@ -142,5 +146,4 @@ function MainContent({
         </div>
     );
 }
-
 export default MainContent;

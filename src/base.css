@@ -1,10 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Cairo');
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg)
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 html, body {
   height: 100%;

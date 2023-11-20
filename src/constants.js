@@ -1,10 +1,13 @@
-import Estrela     from "./assets/lottie/estrela.json";
-import Bau         from "./assets/lottie/ostra.json";
-import Ostra       from "./assets/lottie/ostra.json";
-import Mergulhador from "./assets/lottie/capacete.json";
-import Tubarao     from "./assets/lottie/wild_tuba.json";
-import Camarao     from "./assets/lottie/camarao.json";
-import Peixe       from "./assets/lottie/peixe_amarelo.json";
+import Estrela_EF     from "./assets/lottie/estrela.json";
+import Tesouro_EF     from "./assets/lottie/tesouro.json";
+import Ostra_EF       from "./assets/lottie/ostra.json";
+import Mergulhador_EF from "./assets/lottie/capacete.json";
+import Tubarao_EF     from "./assets/lottie/wild_tuba.json";
+import Camarao_EF     from "./assets/lottie/camarao.json";
+import Peixe_EF       from "./assets/lottie/peixe_amarelo.json";
+
+import Linha_EF       from "./assets/lottie/linha.json";
+import Visor_EF       from "./assets/lottie/wild_tuba.json";
 
 export const TOTAL_ICONS = 7;
 export const ICON_HEIGHT = 142;
@@ -12,7 +15,7 @@ export const MULTIPLIER  = Math.floor(Math.random() * (4 - 1) + 1);
 
 export const SYMBOLS_INDEXES = {
     Estrela_idx:     -ICON_HEIGHT * 6,    
-    Bau_idx:         0,  
+    Tesouro_idx:     0,  
     Ostra_idx:       -ICON_HEIGHT,        
     Mergulhador_idx: -ICON_HEIGHT * 2,    
     Tubarao_idx:     -ICON_HEIGHT * 3,    
@@ -36,7 +39,7 @@ export const symbolsPositions = getSymbolsPositions();
 
 export const SYMBOLS_PAYOUTS = {
     Estrela_x:     3,    
-    Bau_x:         100,  
+    Tesouro_x:     100,  
     Ostra_x:       25,  
     Mergulhador_x: 10,  
     Tubarao_x:     250,  
@@ -45,14 +48,17 @@ export const SYMBOLS_PAYOUTS = {
 }
 
 export const ANIMATION_INDEXES = {
-    Estrela,
-    Bau,         
-    Ostra,       
-    Mergulhador, 
-    Tubarao,    
-    Camarao,     
-    Peixe       
+    Estrela_EF,
+    Tesouro_EF,         
+    Ostra_EF,       
+    Mergulhador_EF, 
+    Tubarao_EF,    
+    Camarao_EF,     
+    Peixe_EF       
 };
+
+export const VICTORY_LINE_INDEX       = Linha_EF;
+export const BET_HEADER_DISPLAY_INDEX = Visor_EF;
 
 const getSymbolsPayouts = () => {
     const payoutsArr = [];

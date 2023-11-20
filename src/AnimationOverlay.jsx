@@ -20,9 +20,8 @@ function AnimationOverlay({ yPosition, animationIndex }) {
         <div className="icon-overlay scale-animation" 
             // style={{ top: yPosition * ICON_HEIGHT + 23 + 'px' }}>
             style={{ top: yPosition * ICON_HEIGHT + 'px' }}>
-            {View}
+            { View }
         </div>
     );   
 }
-
 export default AnimationOverlay;
