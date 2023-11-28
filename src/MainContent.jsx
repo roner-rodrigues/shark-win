@@ -8,7 +8,7 @@ import Navbar         from './Navbar';
 import WinningSound   from './WinningSound'; 
 import Spinner        from './Spinner';
 import ActionBar      from './ActionBar';       
-import RepeatButton   from './RepeatButton'; 
+import RepeatButton   from './RepeatBtn'; 
 import BetIncreaseBtn from './BetIncreaseBtn';
 import BetDecreaseBtn from './BetDecreaseBtn';
 import AutoPlayBtn    from './AutoPlayBtn';
@@ -62,7 +62,7 @@ function MainContent({
                             hasPlayed        = {hasPlayed} 
                             onFinish         = {finishHandler} 
                             hasCheated       = {hasCheated}
-                            forcedSymbol     = {forcedSymbol}
+                            forcedSymbol     = {forcedSymbol+1}
                             showOverlay      = {winner}
                             overlayIdx       = {winnerIndexesPosArr[0]}
                             overlaySymbolIdx = {winnerIndexesSymbolsArr[0]}
@@ -89,7 +89,7 @@ function MainContent({
                             hasPlayed        = {hasPlayed} 
                             onFinish         = {finishHandler}
                             hasCheated       = {hasCheated}
-                            forcedSymbol     = {forcedSymbol+1}
+                            forcedSymbol     = {forcedSymbol}
                             showOverlay      = {winner}
                             overlayIdx       = {winnerIndexesPosArr[2]} 
                             overlaySymbolIdx = {winnerIndexesSymbolsArr[2]}
@@ -99,20 +99,19 @@ function MainContent({
 
                     <div className="bet-bar-container">
                         <div className="bet-header-bar-container">
-                            {/* {winner && <BetDisplayOverlay />} */}
-                            
-                            <div className=
-                                { winner !== true ? 
-                                    "scrolling-text" : 
-                                    "winner-text" 
-                                }
-                            >
+                            {winner && <BetDisplayOverlay />}
 
-                                { winner ? 
-                                    "Win " + totalWinnings.toFixed(2) : 
+                            {!winner && (
+                                <div className="scrolling-text">
                                     "Jogue Shark Win para ganhar diversos prêmios!"
-                                }
-                            </div>
+                                </div>
+                            )}
+                            
+                            {winner && (
+                                <div className="winner-text">
+                                    {"Ganhou " + totalWinnings.toFixed(2)}
+                                </div>
+                            )}
                         </div>
                         <div className="bet-status-bar-container">
                             <div className="col">
@@ -132,10 +131,7 @@ function MainContent({
                             <FastPlayBtn />
                             <BetDecreaseBtn onClick={handleDecreaseBet} />
                             
-                            <RepeatButton 
-                                onClick={handleSpin} 
-                                className={winner === null ? "disabled" : ""}
-                            />
+                            <RepeatButton   onClick={handleSpin} winner={winner} />
 
                             <BetIncreaseBtn onClick={handleIncreaseBet} />
                             <AutoPlayBtn />

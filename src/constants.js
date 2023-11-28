@@ -7,7 +7,7 @@ import Camarao_EF     from "./assets/lottie/camarao.json";
 import Peixe_EF       from "./assets/lottie/peixe_amarelo.json";
 
 import Linha_EF       from "./assets/lottie/linha.json";
-import Visor_EF       from "./assets/lottie/wild_tuba.json";
+import Visor_EF       from "./assets/lottie/visor.json";
 
 export const TOTAL_ICONS = 7;
 export const ICON_HEIGHT = 142;
@@ -54,11 +54,12 @@ export const ANIMATION_INDEXES = {
     Mergulhador_EF, 
     Tubarao_EF,    
     Camarao_EF,     
-    Peixe_EF       
+    Peixe_EF,
+    Visor_EF       
 };
-
 export const VICTORY_LINE_INDEX       = Linha_EF;
 export const BET_HEADER_DISPLAY_INDEX = Visor_EF;
+
 
 const getSymbolsPayouts = () => {
     const payoutsArr = [];

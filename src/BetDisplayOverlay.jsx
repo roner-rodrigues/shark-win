@@ -1,12 +1,10 @@
-// import './BetDisplayOverlay.css';
+import './BetDisplayOverlay.css';
 import { useLottie } from 'lottie-react';
 import { BET_HEADER_DISPLAY_INDEX } from './constants'; 
 
 function BetDisplayOverlay() {
-    const animationLine = Object.values(BET_HEADER_DISPLAY_INDEX);
-
     const options = {
-        animationData: animationLine,
+        animationData: BET_HEADER_DISPLAY_INDEX,
         loop: true,
         autoplay: true,
         rendererSettings: {
@@ -16,9 +14,11 @@ function BetDisplayOverlay() {
     const { View } = useLottie(options);
     
     return (
-        <div className="" >
+        <div className="bet-display-overlay" >
             { View }
         </div>
     );   
 }
 export default BetDisplayOverlay;
+
+

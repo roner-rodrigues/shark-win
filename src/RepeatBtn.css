@@ -1,0 +1,23 @@
+
+#repeatButton {
+    appearance: none;
+    border: none;
+    background: url('assets/buttons/play-btn.png') no-repeat center center;
+    background-size: 128px 128px;
+    width:  128px;
+    height: 128px;
+    cursor: pointer;
+    animation: spin 6s linear infinite;
+    transform-origin: center;
+}
+
+#repeatButton.disabled {
+    pointer-events: none; 
+    opacity: 1; 
+    animation: none; 
+    background: url('assets/buttons/play-disabled-btn.png') no-repeat center center;
+}
+
+/* #repeatButton:hover {
+    box-shadow: 0 0 10px gold;
+} */

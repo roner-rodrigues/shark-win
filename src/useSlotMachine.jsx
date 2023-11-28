@@ -15,7 +15,8 @@ function useSlotMachine() {
     = useState([]);
     
   // Refs
-  const matches                                       = useRef([null, null, null]);
+  const matches                                       
+    = useRef([null, null, null]);
   const spinnerRefs 
     = useRef([React.createRef(), React.createRef(), React.createRef()]);
 
@@ -126,16 +127,18 @@ function useSlotMachine() {
 
   const handleSpin = useCallback(() => {
     emptyMatchesArray();
-    setWinner(false);
+    setWinner(null);
     setHasPlayed(true);
     setWalletAmount(prevWallet => prevWallet - betAmount);
+    
+
+    spinnerRefs.current.forEach(ref => {
+      ref.current?.forceUpdateHandler(); 
+    });
 
     // let chance = Math.random(); 
     // let activationProbability = calculateProbability(betAmount);
     // setHasCheated(chance <= activationProbability);
-    spinnerRefs.current.forEach(ref => {
-      ref.current?.forceUpdateHandler(); 
-    });
   }, [betAmount, emptyMatchesArray, spinnerRefs]);
 
   const handleIncreaseBet = useCallback(() => {

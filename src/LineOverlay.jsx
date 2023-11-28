@@ -3,10 +3,8 @@ import { useLottie } from 'lottie-react';
 import { VICTORY_LINE_INDEX, ICON_HEIGHT } from './constants'; 
 
 function LineOverlay({ yPosition, slopeDegree }) {
-    const animationLine = Object.values(VICTORY_LINE_INDEX);
-
     const options = {
-        animationData: animationLine,
+        animationData: VICTORY_LINE_INDEX,
         loop: true,
         autoplay: true,
         rendererSettings: {
@@ -16,7 +14,7 @@ function LineOverlay({ yPosition, slopeDegree }) {
     const { View } = useLottie(options);
     
     return (
-        <div className="" 
+        <div className="line-overlay scale-animation" 
             style={{ top: yPosition * ICON_HEIGHT + 'px' }}>
             { View }
         </div>
