@@ -3,9 +3,7 @@ import { TOTAL_ICONS, ICON_HEIGHT, MULTIPLIER, symbolsPositions }
     from './constants';
 import AnimationOverlay from './AnimationOverlay';  
 import PayoutOverlay    from './PayoutOverlay';  
-import LineOverlay      from './LineOverlay';  
-import './Spinner.css';
-import './LateralColumnWrappers.css';
+import './MainGame.css';
 
 const Spinner = React.forwardRef((props, ref) => {
     const [position, setPosition]               = useState(0);
@@ -86,7 +84,7 @@ const Spinner = React.forwardRef((props, ref) => {
             style={{backgroundPosition: 'center ' + position + 'px'}}
             className={`icons`} >
 
-            {props.showOverlay && <div className="winner-overlay"></div>}
+            {/* {props.showOverlay && <div className="winner-overlay"></div>} */}
 
             {props.showOverlay && <AnimationOverlay 
                 yPosition={props.overlayIdx} 

@@ -4,6 +4,7 @@ import Ostra_EF       from "./assets/lottie/ostra.json";
 import Mergulhador_EF from "./assets/lottie/capacete.json";
 import Tubarao_EF     from "./assets/lottie/wild_tuba.json";
 import Camarao_EF     from "./assets/lottie/camarao.json";
+// import Camarao_EF     from "./assets/lottie/megawin-bundlefonts.json";
 import Peixe_EF       from "./assets/lottie/peixe_amarelo.json";
 
 import Linha_EF       from "./assets/lottie/linha.json";

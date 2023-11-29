@@ -131,7 +131,6 @@ function useSlotMachine() {
     setHasPlayed(true);
     setWalletAmount(prevWallet => prevWallet - betAmount);
     
-
     spinnerRefs.current.forEach(ref => {
       ref.current?.forceUpdateHandler(); 
     });
@@ -152,6 +151,7 @@ function useSlotMachine() {
   useEffect(() => {
     if (winner) {
       const localActualPayout = winnerSymbolPayout * betAmount;
+      
       setActualPayout(localActualPayout);
       setTotalWinnings(prevWinnings => prevWinnings + localActualPayout);
     }

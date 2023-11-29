@@ -1,7 +1,7 @@
 
 .line-overlay {
     position: absolute;
-    z-index: 3; 
+    z-index: 5; 
     overflow: visible;
     transform: rotate(-45deg) scale(1);
     transform-origin: center;
