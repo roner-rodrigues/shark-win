@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-
 @keyframes moverLetreiro {
   0% {
     transform: translateX(100%);
@@ -25,7 +22,7 @@
 
 .scrolling-text {
   padding-top: 20px;
-  font-family: "Bangers", cursive;
+  font-family: "Bangers";
   font-size: 2rem;
   text-shadow: 
   1px 1px 0 #000,
@@ -39,10 +36,10 @@
 }
 
 .winner-text {
-    font-family: 'Bangers', cursive; /* Fonte cursiva do Google Fonts */
-    font-weight: bold; /* Texto em negrito */
-    font-size: 2em;    /* Tamanho do texto (ajuste conforme necessário) */
-    color: #FFD700;  /* Cor amarela */
+    font-family: 'Bangers';
+    font-weight: bold; 
+    font-size: 2em;  
+    color: #FFD700;  
     text-shadow:
         -2px -2px 0px #FF6347, /* Sombra superior esquerda, cor avermelhada */
         2px -2px 0px #FF6347,  /* Sombra superior direita, cor avermelhada */

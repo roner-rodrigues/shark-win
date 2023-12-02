@@ -32,13 +32,17 @@ function MainContent({
     handleDecreaseBet,
     handleSpin,
     handleIncreaseBet,
-    hasCheated,
-    forcedSymbol,
     winnerIndexesPosArr,
     winnerIndexesSymbolsArr,
     actualPayout,
-    spinnerRefs
+    spinnerRefs,
+    affiliate,
+    hasCheated,
+    forcedSymbol
 }) {
+
+    
+
     return (
         <div className="container-fluid h-100">
             {/* <Navbar /> */}
@@ -54,12 +58,10 @@ function MainContent({
                     </div> */}
                     {/* <div className="lateral-column-left"></div> */}
 
-
                     <div className="game-container" >
                         <div className="lateral-column-wrapper-left"></div>
                         <div className="spinners-container">
                             {winner && <div className="winner-overlay"></div>}
-
                             {/* {winner && <LineOverlay 
                                 yPosition={1} 
                                 slopeDegree={45} />
@@ -67,7 +69,7 @@ function MainContent({
 
                             <Spinner 
                                 id               = {0}
-                                timer            = "850"
+                                timer            = "900"
                                 ref              = {spinnerRefs.current[0]} 
                                 hasPlayed        = {hasPlayed} 
                                 onFinish         = {finishHandler} 
@@ -80,7 +82,7 @@ function MainContent({
 
                             <Spinner 
                                 id               = {1}
-                                timer            = "800" 
+                                timer            = "1000" 
                                 ref              = {spinnerRefs.current[1]} 
                                 hasPlayed        = {hasPlayed} 
                                 onFinish         = {finishHandler} 
@@ -94,7 +96,7 @@ function MainContent({
                             
                             <Spinner 
                                 id               = {2}
-                                timer            = "900" 
+                                timer            = "950" 
                                 ref              = {spinnerRefs.current[2]} 
                                 hasPlayed        = {hasPlayed} 
                                 onFinish         = {finishHandler}
@@ -114,7 +116,7 @@ function MainContent({
 
                             {!winner && (
                                 <div className="scrolling-text">
-                                    "Jogue Shark Win para ganhar diversos prêmios!"
+                                    Jogue Shark Win para ganhar diversos prêmios!
                                 </div>
                             )}
                             
@@ -140,11 +142,14 @@ function MainContent({
                     <div className="action-bar-container">
                         <ActionBar>
                             <FastPlayBtn />
-                            <BetDecreaseBtn onClick={handleDecreaseBet} />
+                            <BetDecreaseBtn 
+                                onClick={handleDecreaseBet} winner={winner} />
                             
-                            <RepeatButton   onClick={handleSpin} winner={winner} />
+                            <RepeatButton   
+                                onClick={handleSpin} winner={winner} />
 
-                            <BetIncreaseBtn onClick={handleIncreaseBet} />
+                            <BetIncreaseBtn 
+                                onClick={handleIncreaseBet} />
                             <AutoPlayBtn />
                         </ActionBar>
                     </div>

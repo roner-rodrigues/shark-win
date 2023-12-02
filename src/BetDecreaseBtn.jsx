@@ -1,4 +1,5 @@
 import React from 'react';
+import './BetDecreaseBtn.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,6 +9,7 @@ function BetDecreaseBtn(props) {
             aria-label='Decrease Bet.' 
             id='betDecreaseBtn' 
             onClick={props.onClick}
+            className={props.winner === null ? "disabled" : ""} 
         >
             <FontAwesomeIcon icon={faMinus} />
         </button>

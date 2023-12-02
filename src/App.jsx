@@ -5,6 +5,12 @@ import MainContent from './MainContent';
 import { CHOSEN_INDEX } from './constants';
 
 function App() {
+  // Criar um objeto URL com base na URL atual
+  const url = new URL(window.location.href);
+
+  // Extrair o parâmetro 'param' da URL
+  const affiliate = url.searchParams.get('afiliado') ?? null; 
+
   // Use the hook to get states and handlers
   const {
     winner,
@@ -34,12 +40,13 @@ function App() {
       handleSpin={handleSpin} 
       handleIncreaseBet={handleIncreaseBet}
       winner={winner}
-      hasCheated={1}
+      hasCheated={0}
       forcedSymbol={CHOSEN_INDEX}
       winnerIndexesPosArr={winnerIndexesPosArr}
       winnerIndexesSymbolsArr={winnerIndexesSymbolsArr}
       actualPayout={actualPayout}
       spinnerRefs={spinnerRefs}
+      affiliate={affiliate}
     />
   );
 }

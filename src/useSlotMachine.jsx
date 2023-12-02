@@ -109,20 +109,23 @@ function useSlotMachine() {
       }
     };
 
-    // Middle row
-    if (checkLine(1, 1, 1))
+    // Top row
+    if(checkLine(0, 0, 0))
       return true;
-    // else
-    // // Diagonal left-to-right
-    // checkLine(0, 1, 2);
-    // // Diagonal right-to-left
-    // checkLine(2, 1, 0);
-    
-    // // Top row
-    // checkLine(0, 0, 0);
-    // // Bottom row
-    // checkLine(2, 2, 2);
-    
+    // Middle row
+    else if (checkLine(1, 1, 1))
+      return true;
+    // Bottom row
+    else if (checkLine(2, 2, 2))
+      return true;
+    // Diagonal left-to-right
+    else if (checkLine(0, 1, 2))
+      return true;
+    // Diagonal right-to-left
+    else if (checkLine(2, 1, 0))
+      return true;
+    else
+      return false;
   }, []);
 
   const handleSpin = useCallback(() => {
@@ -145,7 +148,7 @@ function useSlotMachine() {
   }, []);
 
   const handleDecreaseBet = useCallback(() => {
-    setBetAmount(prevBet => Math.max(prevBet - 10, 0));
+    setBetAmount(prevBet => Math.max(prevBet - 1.50, 1.50));
   }, []);
   
   useEffect(() => {
@@ -155,7 +158,7 @@ function useSlotMachine() {
       setActualPayout(localActualPayout);
       setTotalWinnings(prevWinnings => prevWinnings + localActualPayout);
     }
-  }, [winner, winnerSymbolPayout, betAmount]);
+  }, [winner]);
 
   const finishHandler = useCallback((value, spinnerId) => {
     if (!hasPlayed) return;  

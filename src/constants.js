@@ -8,11 +8,12 @@ import Camarao_EF     from "./assets/lottie/camarao.json";
 import Peixe_EF       from "./assets/lottie/peixe_amarelo.json";
 
 import Linha_EF       from "./assets/lottie/linha.json";
-import Visor_EF       from "./assets/lottie/visor.json";
+// import Visor_EF       from "./assets/lottie/visor.json";
+import Visor_EF       from "./assets/lottie/visor2.json";
 
 export const TOTAL_ICONS = 7;
 export const ICON_HEIGHT = 142;
-export const MULTIPLIER  = Math.floor(Math.random() * (4 - 1) + 1);
+export const MULTIPLIER  = Math.floor(Math.random()*(4-1)+1);
 
 export const SYMBOLS_INDEXES = {
     Estrela_idx:     -ICON_HEIGHT * 6,    

@@ -13,9 +13,16 @@ const Spinner = React.forwardRef((props, ref) => {
     const setStartPosition = () => {
         return ((Math.floor((Math.random()*TOTAL_ICONS))) * ICON_HEIGHT)*-1;
     }
-    const start = useRef(setStartPosition());
+    const start      = useRef(setStartPosition());
+    const firstRound = useRef(1);
 
     useEffect(() => {
+        if (firstRound.current) {
+            setPosition(start.current);
+            setTimeRemaining(props.timer);
+            firstRound.current = 0;
+        }
+
         setLocalHasPlayed(props.hasPlayed);
     }, [props.hasPlayed]);
 
@@ -77,8 +84,7 @@ const Spinner = React.forwardRef((props, ref) => {
         }
     }));
 
-    const shouldRenderPayoutOverlay = 
-        props.id === 1 && props.showOverlay && props.actualPayout;
+    const shouldRenderPayoutOverlay = props.id === 1 && props.showOverlay && props.actualPayout;
     return (            
         <div 
             style={{backgroundPosition: 'center ' + position + 'px'}}

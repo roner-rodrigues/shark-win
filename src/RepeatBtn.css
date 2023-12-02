@@ -1,3 +1,11 @@
+@keyframes spinInverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
 
 #repeatButton {
     appearance: none;
@@ -7,7 +15,7 @@
     width:  128px;
     height: 128px;
     cursor: pointer;
-    animation: spin 6s linear infinite;
+    animation: spinInverse 6s linear infinite;
     transform-origin: center;
 }
 
