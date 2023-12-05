@@ -46,7 +46,7 @@ function MainContent({
     return (
         <div className="container-fluid h-100">
             {/* <Navbar /> */}
-            {winner === true && <WinningSound />}
+            {/* {winner === true && <WinningSound />} */}
             <div className="row h-100 align-items-center justify-content-center">
                 <div className="custom-container parent-container">
                     <div className="gif-container">
