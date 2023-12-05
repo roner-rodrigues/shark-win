@@ -141,7 +141,7 @@ function useSlotMachine() {
     // let chance = Math.random(); 
     // let activationProbability = calculateProbability(betAmount);
     // setHasCheated(chance <= activationProbability);
-  }, [betAmount, emptyMatchesArray, spinnerRefs]);
+  }, [betAmount, spinnerRefs]);
 
   const handleIncreaseBet = useCallback(() => {
     setBetAmount(prevBet => Math.min(prevBet + 1.50, 50));

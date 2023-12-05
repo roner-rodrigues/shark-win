@@ -19,9 +19,9 @@
     transform-origin: center;
 }
 
-#repeatButton.disabled {
+#repeatButton.desabilitado {
+    background-size: 128px 128px !important;
     pointer-events: none; 
-    opacity: 1; 
     animation: none; 
     background: url('assets/buttons/play-disabled-btn.png') no-repeat center center;
 }

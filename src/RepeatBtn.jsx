@@ -7,7 +7,7 @@ function RepeatButton(props) {
             aria-label='Play again.' 
             id='repeatButton' 
             onClick={props.onClick}
-            className={props.winner === null ? "disabled" : ""} 
+            className={props.winner === null ? "desabilitado" : ""} 
             >
         </button>
     );

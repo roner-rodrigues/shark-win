@@ -1,6 +1,6 @@
 import React from 'react';
 import useSlotMachine from './useSlotMachine'; 
-import bannerPrincipal from './assets/tela/banner-tuba.png';
+import bannerPrincipal from './assets/tela/header-TUBA.gif';
 import MainContent from './MainContent';
 import { CHOSEN_INDEX } from './constants';
 
