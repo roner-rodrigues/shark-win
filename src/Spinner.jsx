@@ -18,9 +18,9 @@ const Spinner = React.forwardRef((props, ref) => {
     
     useEffect(() => {
         if (firstRound.current) {
-            setPosition(start.current);
+            setPosition(start.current + ICON_HEIGHT);
             console.log(start.current);
-            setTimeRemaining(1000);
+            setTimeRemaining(props.timer);
             firstRound.current = 0;
         }
 
