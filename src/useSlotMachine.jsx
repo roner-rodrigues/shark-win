@@ -138,10 +138,10 @@ function useSlotMachine() {
       ref.current?.forceUpdateHandler(); 
     });
 
-    // let chance = Math.random(); 
-    // let activationProbability = calculateProbability(betAmount);
-    // setHasCheated(chance <= activationProbability);
   }, [betAmount, spinnerRefs]);
+  // let chance = Math.random(); 
+  // let activationProbability = calculateProbability(betAmount);
+  // setHasCheated(chance <= activationProbability);
 
   const handleIncreaseBet = useCallback(() => {
     setBetAmount(prevBet => Math.min(prevBet + 1.50, 50));

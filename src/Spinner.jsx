@@ -15,11 +15,12 @@ const Spinner = React.forwardRef((props, ref) => {
     }
     const start      = useRef(setStartPosition());
     const firstRound = useRef(1);
-
+    
     useEffect(() => {
         if (firstRound.current) {
             setPosition(start.current);
-            setTimeRemaining(props.timer);
+            console.log(start.current);
+            setTimeRemaining(1000);
             firstRound.current = 0;
         }
 

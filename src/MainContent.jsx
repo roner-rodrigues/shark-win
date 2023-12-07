@@ -69,7 +69,7 @@ function MainContent({
 
                             <Spinner 
                                 id               = {0}
-                                timer            = "900"
+                                timer            = "950"
                                 ref              = {spinnerRefs.current[0]} 
                                 hasPlayed        = {hasPlayed} 
                                 onFinish         = {finishHandler} 
@@ -82,7 +82,7 @@ function MainContent({
 
                             <Spinner 
                                 id               = {1}
-                                timer            = "1000" 
+                                timer            = "1050" 
                                 ref              = {spinnerRefs.current[1]} 
                                 hasPlayed        = {hasPlayed} 
                                 onFinish         = {finishHandler} 
@@ -96,7 +96,7 @@ function MainContent({
                             
                             <Spinner 
                                 id               = {2}
-                                timer            = "950" 
+                                timer            = "900" 
                                 ref              = {spinnerRefs.current[2]} 
                                 hasPlayed        = {hasPlayed} 
                                 onFinish         = {finishHandler}
