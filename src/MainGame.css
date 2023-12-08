@@ -30,7 +30,7 @@
     width: 148px;
     height: 426px;
     overflow: hidden;
-    background: #fff url('assets/tela/TIRA_148x994.png') repeat-y;
+    background: #fff url('assets/tira/tira_v2.png') repeat-y;
     will-change: backgroundPosition;
     transition: 0.3s background-position ease-in-out;
     position: relative;

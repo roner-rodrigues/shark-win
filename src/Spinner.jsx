@@ -17,12 +17,11 @@ const Spinner = React.forwardRef((props, ref) => {
     const firstRound = useRef(1);
     
     useEffect(() => {
-        if (firstRound.current) {
-            setPosition(start.current + ICON_HEIGHT);
-            console.log(start.current);
-            setTimeRemaining(props.timer);
-            firstRound.current = 0;
-        }
+        // if (firstRound.current) {
+        //     setPosition(start.current);
+        //     setTimeRemaining(props.timer);
+        //     firstRound.current = 0;
+        // }
 
         setLocalHasPlayed(props.hasPlayed);
     }, [props.hasPlayed]);
