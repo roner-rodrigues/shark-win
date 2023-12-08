@@ -13,12 +13,17 @@ function useSlotMachine() {
   const [winnerIndexesPosArr, setWinnerIndexesPosArr] = useState([]);
   const [winnerIndexesSymbolsArr, setWinnerIndexesSymbolsArr] 
     = useState([]);
+  const [autoPlayOn, setAutoPlayOn]                   = useState(0);
     
   // Refs
   const matches                                       
     = useRef([null, null, null]);
   const spinnerRefs 
     = useRef([React.createRef(), React.createRef(), React.createRef()]);
+
+  useEffect(() => {
+    
+  }, []);
 
   // const calculateProbability = useCallback((betAmount) => {
   //   const minAmount = 1.50;
@@ -144,11 +149,7 @@ function useSlotMachine() {
           ref.current?.forceUpdateHandler();
         });
       }
-    }, 10); 
-    
-    spinnerRefs.current.forEach(ref => {
-      ref.current?.forceUpdateHandler(); 
-    });
+    }, 100); 
 
     // let chance = Math.random(); 
     // let activationProbability = calculateProbability(betAmount);
@@ -199,5 +200,4 @@ function useSlotMachine() {
     handleSpin
   };
 }
-
 export default useSlotMachine;

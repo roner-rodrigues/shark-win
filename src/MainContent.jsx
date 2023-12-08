@@ -38,11 +38,9 @@ function MainContent({
     spinnerRefs,
     affiliate,
     hasCheated,
-    forcedSymbol
+    forcedSymbol,
+    autoPlayOn
 }) {
-
-    
-
     return (
         <div className="container-fluid h-100">
             {/* <Navbar /> */}
@@ -142,14 +140,16 @@ function MainContent({
                     <div className="action-bar-container">
                         <ActionBar>
                             <FastPlayBtn />
+
                             <BetDecreaseBtn 
                                 onClick={handleDecreaseBet} winner={winner} />
                             
                             <RepeatButton   
-                                onClick={handleSpin} winner={winner} />
+                                onClick={handleSpin} winner={winner} autoPlayOn={autoPlayOn}/>
 
                             <BetIncreaseBtn 
                                 onClick={handleIncreaseBet} />
+
                             <AutoPlayBtn />
                         </ActionBar>
                     </div>

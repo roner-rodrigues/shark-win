@@ -47,6 +47,7 @@ function App() {
       actualPayout={actualPayout}
       spinnerRefs={spinnerRefs}
       affiliate={affiliate}
+      autoPlayOn={0}
     />
   );
 }
