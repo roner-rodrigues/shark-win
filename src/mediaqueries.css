@@ -1,12 +1,7 @@
-@media screen and (max-width: 1000px) {
-    .spinners-container {
-    transform: translate(-50%, -50%) scale(.55, .55);
+@media screen and (max-width: 768px) {
+    .container-fluid {
+        height: 586.2px; 
     }
+        
 }
 
-@media screen and (max-width: 500px) {
-    .spinners-container {
-    transform: translate(-50%, -50%) scale(.4, .4);
-    }
-}
-  

@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import './mediaqueries.css';
 import './base.css';
+import './MainGame.css';
 import './BetBarContainer.css';
 import './BetHeaderBarContainer.css';
 import './BetStatusBarContainer.css';
@@ -42,11 +44,11 @@ function MainContent({
     autoPlayOn
 }) {
     return (
-        <div className="container-fluid h-100">
+        <div className="container-fluid">
             {/* <Navbar /> */}
             {/* {winner === true && <WinningSound />} */}
             <div className="row h-100 align-items-center justify-content-center">
-                <div className="custom-container parent-container">
+                <div className="parent-container">
                     <div className="gif-container">
                         <img src={bannerPrincipal} />                    
                     </div>
@@ -56,7 +58,7 @@ function MainContent({
                     </div> */}
                     {/* <div className="lateral-column-left"></div> */}
 
-                    <div className="game-container" >
+                    <div className="slots-box-container" >
                         <div className="lateral-column-wrapper-left"></div>
                         <div className="spinners-container">
                             {winner && <div className="winner-overlay"></div>}

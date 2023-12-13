@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { TOTAL_ICONS, ICON_HEIGHT, MULTIPLIER, symbolsPositions } 
     from './constants';
-import AnimationOverlay from './AnimationOverlay';  
-import PayoutOverlay    from './PayoutOverlay';  
-import './MainGame.css';
+import AnimationOverlay                       from './AnimationOverlay';  
+import PayoutOverlay                          from './PayoutOverlay';  
 
 const Spinner = React.forwardRef((props, ref) => {
     const [position, setPosition]               = useState(0);

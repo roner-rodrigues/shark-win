@@ -8,9 +8,10 @@
     z-index: 2; 
 }
 
-.game-container {
+.slots-box-container {
     display: flex; 
     align-items: stretch;
+    flex-grow: 1;
 }
 
 .spinners-container {
@@ -22,7 +23,7 @@
     transition: 0.3s transform;
     width: 80%;
     height: 426px;
-    flex-grow: 0; 
+    flex-grow: 1; 
     flex-shrink: 0;
 }
 

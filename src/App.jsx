@@ -1,7 +1,7 @@
-import React from 'react';
-import useSlotMachine from './useSlotMachine'; 
-import bannerPrincipal from './assets/tela/header-TUBA.gif';
-import MainContent from './MainContent';
+import React            from 'react';
+import useSlotMachine   from './useSlotMachine'; 
+import bannerPrincipal  from './assets/tela/header-TUBA.gif';
+import MainContent      from './MainContent';
 import { CHOSEN_INDEX } from './constants';
 
 function App() {
