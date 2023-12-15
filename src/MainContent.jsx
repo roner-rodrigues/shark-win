@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import './mediaqueries.css';
 import './base.css';
 import './MainGame.css';
 import './BetBarContainer.css';
 import './BetHeaderBarContainer.css';
 import './BetStatusBarContainer.css';
+import './mediaqueries.css';
 
 import Navbar         from './Navbar';
 import WinningSound   from './WinningSound'; 
@@ -52,11 +52,6 @@ function MainContent({
                     <div className="gif-container">
                         <img src={bannerPrincipal} />                    
                     </div>
-
-                    {/* <div className="line-number-container">
-                        <div className="line-number-1">4</div>
-                    </div> */}
-                    {/* <div className="lateral-column-left"></div> */}
 
                     <div className="slots-box-container" >
                         <div className="lateral-column-wrapper-left"></div>
