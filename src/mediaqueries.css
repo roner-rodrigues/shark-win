@@ -1,7 +1,12 @@
-/* @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (min-height: 1080px) {
     .container-fluid {
-        height: 586.2px; 
+        height: 100% !important; 
+        width:  100% !important; 
+    }
+
+    .parent-container {
+        transform: none !important;
     }
 
 }
- */
+
