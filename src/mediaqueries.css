@@ -1,6 +1,7 @@
 @media screen and (min-device-width: 768px) {
     .container-fluid {
         margin: 10px auto;
+        height: 586.2px;
     }
     
     .parent-container {
