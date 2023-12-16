@@ -13,21 +13,23 @@ body {
 * { box-sizing: border-box; }
 
 .container-fluid {
-  margin-top: 10px;
+  margin: auto;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width:  511.967px; 
+  width:  580px; 
   height: 586.2px;
 }
 
+/* 
 .parent-container {
   transform: scale(.58, .58);
   transform-origin: top center;
   position: relative;
   width:  100%; 
-}
+} */
+
 
 .gif-container {
   height: 200px;

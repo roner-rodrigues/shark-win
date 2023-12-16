@@ -1,17 +1,13 @@
-/* @media screen and (max-width: 768px) and (max-height: 1080px) { */
-@media screen and (min-width: 768px) {
+@media screen and (min-device-width: 768px) {
     .container-fluid {
-        height: 100% !important; 
-        width:  100% !important; 
-
-        display: flex; 
-        flex-grow: 1;
-        justify-content: center; 
-        align-items: center;
+        margin: 10px auto;
     }
-
+    
     .parent-container {
-        transform:        none !important;
+        transform: scale(.58, .58);
+        transform-origin: top center;
+        position: relative;
+        width:  100%; 
     }
 
 }
