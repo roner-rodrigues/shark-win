@@ -143,7 +143,7 @@ function useSlotMachine() {
   }, []);
 
   const handleSpin = useCallback((isAutoPlayBtnPressed) => {
-    if (!isAutoPlayBtnPressed) {
+    if (!isAutoPlayBtnPressed && autoPlayOn) {
       setAutoPlayOn(false);
 
       const element = document.getElementById('repeatButton'); 
@@ -173,7 +173,7 @@ function useSlotMachine() {
     // let chance = Math.random(); 
     // let activationProbability = calculateProbability(betAmount);
     // setHasCheated(chance <= activationProbability);
-  }, [betAmount, spinnerRefs]);
+  }, [betAmount, spinnerRefs, autoPlayOn]);
 
   const handleIncreaseBet = useCallback(() => {
     setBetAmount(prevBet => Math.min(prevBet + 1.50, 50));
