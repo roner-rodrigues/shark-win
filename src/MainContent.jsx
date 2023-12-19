@@ -41,6 +41,7 @@ function MainContent({
     affiliate,
     hasCheated,
     forcedSymbol,
+    handleAutoPlay,
     autoPlayOn
 }) {
     return (
@@ -139,15 +140,20 @@ function MainContent({
                             <FastPlayBtn />
 
                             <BetDecreaseBtn 
-                                onClick={handleDecreaseBet} winner={winner} />
+                                onClick={handleDecreaseBet} 
+                                winner={winner} />
                             
                             <RepeatButton   
-                                onClick={handleSpin} winner={winner} autoPlayOn={autoPlayOn}/>
+                                onClick={() => handleSpin(false)}
+                                winner={winner} 
+                                autoPlayOn={autoPlayOn} 
+                            />
 
                             <BetIncreaseBtn 
                                 onClick={handleIncreaseBet} />
 
-                            <AutoPlayBtn />
+                            <AutoPlayBtn 
+                                onClick={handleAutoPlay} />
                         </ActionBar>
                     </div>
                 </div>

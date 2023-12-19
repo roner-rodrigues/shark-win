@@ -8,8 +8,11 @@ function RepeatButton(props) {
             id='repeatButton' 
             onClick={props.onClick}
             className={`
-                ${props.winner === null ? "desabilitado" : ""} 
-                ${props.autoPlayOn      ? "autoPlayOn" : ""}
+                ${((props.winner === null) && !props.autoPlayOn) ? 
+                    "desabilitado" : ""} 
+
+                ${props.autoPlayOn ? 
+                    "autoPlayOn" : ""}
             `} 
             >
         </button>

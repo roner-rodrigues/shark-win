@@ -13,7 +13,8 @@ function useSlotMachine() {
   const [winnerIndexesPosArr, setWinnerIndexesPosArr] = useState([]);
   const [winnerIndexesSymbolsArr, setWinnerIndexesSymbolsArr] 
     = useState([]);
-  const [autoPlayOn, setAutoPlayOn]                   = useState(0);
+  const [autoPlayOn, setAutoPlayOn]                   = useState(false);
+  const [autoTriggerSpin, setAutoTriggerSpin]         = useState(false);
     
   // Refs
   const matches                                       
@@ -21,20 +22,24 @@ function useSlotMachine() {
   const spinnerRefs 
     = useRef([React.createRef(), React.createRef(), React.createRef()]);
 
+
   useEffect(() => {
-    
-  }, []);
+      if (autoPlayOn && (winner !== null)) {
+          const timer = setTimeout(() => {
+              setAutoTriggerSpin(true); 
+          }, 850);
 
-  // const calculateProbability = useCallback((betAmount) => {
-  //   const minAmount = 1.50;
-  //   const maxAmount = 50;
-  //   const minProbability = 0.15; // 15%
-  //   const maxProbability = 1;    // 100%
+          return () => clearTimeout(timer);
+      }
+  }, [autoPlayOn, winner]);
 
-  //   const slope = (maxProbability - minProbability) / (maxAmount - minAmount);
-  //   const prob = slope * (betAmount - minAmount) + minProbability;
-  //   return prob;
-  // }, []);
+  // Efeito para acionar handleSpin quando autoTriggerSpin muda
+  useEffect(() => {
+      if (autoTriggerSpin) {
+          handleSpin(true);
+          setAutoTriggerSpin(false);
+      }
+  }, [autoTriggerSpin]);
 
   const computeVisibleIndicesTransposed = useCallback(() => {
     const topValues = [];
@@ -133,7 +138,21 @@ function useSlotMachine() {
       return false;
   }, []);
 
-  const handleSpin = useCallback(() => {
+  const handleAutoPlay = useCallback(() => {
+    setAutoPlayOn(currentState => !currentState);
+  }, []);
+
+  const handleSpin = useCallback((isAutoPlayBtnPressed) => {
+    if (!isAutoPlayBtnPressed) {
+      setAutoPlayOn(false);
+
+      const element = document.getElementById('repeatButton'); 
+      if (element) {
+          element.classList.remove('autoPlayOn'); 
+      }
+      return;
+    }
+
     emptyMatchesArray();
     setWinner(null);
     setHasPlayed(true);
@@ -197,7 +216,20 @@ function useSlotMachine() {
     handleDecreaseBet,
     handleIncreaseBet,
     spinnerRefs,
-    handleSpin
+    handleSpin,
+    handleAutoPlay,
+    autoPlayOn
   };
 }
 export default useSlotMachine;
+
+// const calculateProbability = useCallback((betAmount) => {
+//   const minAmount = 1.50;
+//   const maxAmount = 50;
+//   const minProbability = 0.15; // 15%
+//   const maxProbability = 1;    // 100%
+
+//   const slope = (maxProbability - minProbability) / (maxAmount - minAmount);
+//   const prob = slope * (betAmount - minAmount) + minProbability;
+//   return prob;
+// }, []);

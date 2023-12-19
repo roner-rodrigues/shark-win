@@ -1,11 +1,11 @@
-import React from 'react';
+import React               from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faPlay }          from '@fortawesome/free-solid-svg-icons';
 
 function AutoPlayBtn(props) {
     return (
         <button 
-            aria-label='Autoplay' 
+            aria-label='AutoPlay' 
             id='autoPlayBtn' 
             onClick={props.onClick}
         >
@@ -13,5 +13,4 @@ function AutoPlayBtn(props) {
         </button>
     );
 }
-
 export default AutoPlayBtn;

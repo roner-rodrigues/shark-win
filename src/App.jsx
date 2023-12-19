@@ -25,7 +25,9 @@ function App() {
     handleDecreaseBet,
     handleIncreaseBet,
     handleSpin,
-    spinnerRefs
+    spinnerRefs,
+    handleAutoPlay,
+    autoPlayOn
   } = useSlotMachine();
 
   return (
@@ -47,7 +49,8 @@ function App() {
       actualPayout={actualPayout}
       spinnerRefs={spinnerRefs}
       affiliate={affiliate}
-      autoPlayOn={0}
+      handleAutoPlay={handleAutoPlay}
+      autoPlayOn={autoPlayOn}
     />
   );
 }

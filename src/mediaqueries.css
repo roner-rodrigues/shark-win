@@ -1,4 +1,9 @@
 @media screen and (min-device-width: 768px) {
+    /* body {
+        background: url('assets/tela/baixo-tela.png') no-repeat center center;
+        background-size: 100% 100%; 
+    } */
+    
     .container-fluid {
         margin: 10px auto;
         height: 586.2px;
