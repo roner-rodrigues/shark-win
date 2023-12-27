@@ -13,7 +13,7 @@ function useSlotMachine() {
   const [winnerIndexesPosArr, setWinnerIndexesPosArr] = useState([]);
   const [winnerIndexesSymbolsArr, setWinnerIndexesSymbolsArr] 
     = useState([]);
-  const [autoPlayOn, setAutoPlayOn]                   = useState(false);
+  const [autoPlayMode, setAutoPlayMode]               = useState(false);
   const [autoTriggerSpin, setAutoTriggerSpin]         = useState(false);
     
   // Refs
@@ -24,14 +24,14 @@ function useSlotMachine() {
 
 
   useEffect(() => {
-      if (autoPlayOn && (winner !== null)) {
+      if (autoPlayMode && (winner !== null)) {
           const timer = setTimeout(() => {
               setAutoTriggerSpin(true); 
           }, 850);
 
           return () => clearTimeout(timer);
       }
-  }, [autoPlayOn, winner]);
+  }, [autoPlayMode, winner]);
 
   // Efeito para acionar handleSpin quando autoTriggerSpin muda
   useEffect(() => {
@@ -138,18 +138,13 @@ function useSlotMachine() {
       return false;
   }, []);
 
-  const handleAutoPlay = useCallback(() => {
-    setAutoPlayOn(currentState => !currentState);
+  const handleAutoPlay  = useCallback(() => {
+    setAutoPlayMode(currentState => !currentState);
   }, []);
 
   const handleSpin = useCallback((isAutoPlayBtnPressed) => {
-    if (!isAutoPlayBtnPressed && autoPlayOn) {
-      setAutoPlayOn(false);
-
-      const element = document.getElementById('repeatButton'); 
-      if (element) {
-          element.classList.remove('autoPlayOn'); 
-      }
+    if (!isAutoPlayBtnPressed && autoPlayMode) {
+      setAutoPlayMode(false);
       return;
     }
 
@@ -173,7 +168,7 @@ function useSlotMachine() {
     // let chance = Math.random(); 
     // let activationProbability = calculateProbability(betAmount);
     // setHasCheated(chance <= activationProbability);
-  }, [betAmount, spinnerRefs, autoPlayOn]);
+  }, [betAmount, spinnerRefs, autoPlayMode]);
 
   const handleIncreaseBet = useCallback(() => {
     setBetAmount(prevBet => Math.min(prevBet + 1.50, 50));
@@ -218,7 +213,7 @@ function useSlotMachine() {
     spinnerRefs,
     handleSpin,
     handleAutoPlay,
-    autoPlayOn
+    autoPlayMode
   };
 }
 export default useSlotMachine;

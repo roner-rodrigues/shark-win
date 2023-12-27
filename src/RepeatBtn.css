@@ -26,7 +26,7 @@
     background: url('assets/buttons/play-disabled-btn.png') no-repeat center center;
 }
 
-#repeatButton.autoPlayOn {
+#repeatButton.autoPlayMode {
     background-size: 128px 128px !important;
     animation: none; 
     background: url('assets/buttons/autospin.png') no-repeat center center;

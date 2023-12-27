@@ -27,7 +27,7 @@ function App() {
     handleSpin,
     spinnerRefs,
     handleAutoPlay,
-    autoPlayOn
+    autoPlayMode
   } = useSlotMachine();
 
   return (
@@ -50,7 +50,7 @@ function App() {
       spinnerRefs={spinnerRefs}
       affiliate={affiliate}
       handleAutoPlay={handleAutoPlay}
-      autoPlayOn={autoPlayOn}
+      autoPlayMode={autoPlayMode}
     />
   );
 }

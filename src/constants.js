@@ -12,7 +12,7 @@ import Visor_EF       from "./assets/lottie/visor2.json";
 
 export const TOTAL_ICONS = 7;
 export const ICON_HEIGHT = 142;
-export const MULTIPLIER  = Math.floor(Math.random()*(4-1)+1);
+export var   MULTIPLIER  = Math.floor(Math.random()*(4-1)+1);
 
 export const SYMBOLS_INDEXES = {
     Tesouro_idx:     -ICON_HEIGHT * 6,    

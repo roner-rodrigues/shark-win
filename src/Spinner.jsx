@@ -1,26 +1,35 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { TOTAL_ICONS, ICON_HEIGHT, MULTIPLIER, symbolsPositions } 
+import { MULTIPLIER as INITIAL_MULTIPLIER, TOTAL_ICONS, ICON_HEIGHT, symbolsPositions } 
     from './constants';
-import AnimationOverlay                       from './AnimationOverlay';  
-import PayoutOverlay                          from './PayoutOverlay';  
+import AnimationOverlay from './AnimationOverlay';  
+import PayoutOverlay    from './PayoutOverlay';  
 
 const Spinner = React.forwardRef((props, ref) => {
     const [position, setPosition]               = useState(0);
     const [timeRemaining, setTimeRemaining]     = useState(props.timer);
     const [localHasPlayed,  setLocalHasPlayed]  = useState(false);
+    const [localMultiplier, setLocalMultiplier] = useState(INITIAL_MULTIPLIER);
+    const [turboMode, setTurboMode]             = useState(false);
     
     const setStartPosition = () => {
         return ((Math.floor((Math.random()*TOTAL_ICONS))) * ICON_HEIGHT)*-1;
     }
     const start      = useRef(setStartPosition());
-    const firstRound = useRef(1);
+    const firstRound = useRef(true);
+
+    useEffect(() => {
+        if (turboMode) {
+          setLocalMultiplier(INITIAL_MULTIPLIER * 3);
+        } else {
+          setLocalMultiplier(INITIAL_MULTIPLIER / 3);
+        }
+    }, [turboMode]);
     
     useEffect(() => {
-        // if (firstRound.current) {
-        //     setPosition(start.current);
-        //     setTimeRemaining(props.timer);
-        //     firstRound.current = 0;
-        // }
+        if (firstRound.current) {
+            setPosition(start.current);
+            firstRound.current = false;
+        }
 
         setLocalHasPlayed(props.hasPlayed);
     }, [props.hasPlayed]);
@@ -32,6 +41,10 @@ const Spinner = React.forwardRef((props, ref) => {
 
         return () => clearInterval(timer);
     }, [timeRemaining, position]);
+
+    // const handleTurboMode = useCallback(() => {
+    //     setTurboMode(currentState => !currentState);
+    //   }, []);
     
     const tick = () => {
         if(!props.hasPlayed) return;
@@ -48,7 +61,7 @@ const Spinner = React.forwardRef((props, ref) => {
     }
 
     const moveBackground = () => {
-        setPosition(position - ICON_HEIGHT * MULTIPLIER);
+        setPosition(position - ICON_HEIGHT * localMultiplier);
         setTimeRemaining(timeRemaining - 100);
     }
 
@@ -83,7 +96,7 @@ const Spinner = React.forwardRef((props, ref) => {
         }
     }));
 
-    const shouldRenderPayoutOverlay = props.id === 1 && props.showOverlay && props.actualPayout;
+    const shouldRenderPayoutOverlay = (props.id === 1 && props.showOverlay && props.actualPayout);
     return (            
         <div 
             style={{backgroundPosition: 'center ' + position + 'px'}}

@@ -42,7 +42,8 @@ function MainContent({
     hasCheated,
     forcedSymbol,
     handleAutoPlay,
-    autoPlayOn
+    autoPlayMode,
+    handleTurboMode
 }) {
     return (
         <div className="container-fluid">
@@ -137,7 +138,9 @@ function MainContent({
 
                     <div className="action-bar-container">
                         <ActionBar>
-                            <FastPlayBtn />
+                            <FastPlayBtn 
+                                onClick={handleTurboMode}
+                                />
 
                             <BetDecreaseBtn 
                                 onClick={handleDecreaseBet} 
@@ -146,7 +149,7 @@ function MainContent({
                             <RepeatButton   
                                 onClick={() => handleSpin(false)}
                                 winner={winner} 
-                                autoPlayOn={autoPlayOn} 
+                                autoPlayMode={autoPlayMode} 
                             />
 
                             <BetIncreaseBtn 
