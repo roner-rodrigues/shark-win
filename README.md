@@ -27,4 +27,4 @@ This project is a React-based slot machine game featuring a dynamic user interfa
 3. Start the development server:
    npm start
 
-## Enjoy the game and good luck!
+Enjoy the game and good luck ! 🤑💵💰
